@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/center_nameTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="태임 어린이집"
+                    android:textColor="#000"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="5dp"/>
+
+                <View
+                    android:id="@+id/devide"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#BEBEBE"
+                    android:layout_below="@id/center_nameTv"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"/>
+
+                <TextView
+                    android:id="@+id/center_addressTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/devide"
+                    android:text="세종특별자치시  갈매로 477 정부세종청사 기획재정부동 1층"
+                    android:layout_marginLeft="8dp"
+                    android:lineSpacingExtra="1dp"
+                    android:maxLines="2"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:background="#F5F5F5"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <ImageView
+                    android:id="@+id/center_bus_imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:src="@drawable/icon_school_bus"
+                    android:paddingBottom="3dp"/>
+
+                <ImageView
+                    android:id="@+id/center_type_imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:src="@drawable/icon_home"
+                    android:paddingTop="3dp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
