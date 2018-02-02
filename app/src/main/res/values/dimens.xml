@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="main_topImage_height">250dp</dimen>
+    <dimen name="main_cardview_textsize">16dp</dimen>
+    <dimen name="main_cardview_margin">18dp</dimen>
+    <dimen name="main_cardview_corner">14dp</dimen>
+    <dimen name="main_cardview_heignt">180dp</dimen>
+    <dimen name="main_cardview_marginBottom">1dp</dimen>
+</resources>
