@@ -19,6 +19,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.DayCareCenterActivity"/>
+        <activity android:name=".Activity.DayCareCenterDetailActivity"/>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyApNxvsu5Ecka9FyRXhR4rnT0mXWb1KoDU"/>
     </application>
 
 </manifest>

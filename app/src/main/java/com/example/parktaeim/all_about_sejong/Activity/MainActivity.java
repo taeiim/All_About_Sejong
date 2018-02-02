@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         daycarecenterCardView.setOnClickListener(this);
 
+        CardView detailCardView = (CardView) findViewById(R.id.detailCardView);
+        detailCardView.setOnClickListener(v-> startActivity(new Intent(MainActivity.this,DayCareCenterDetailActivity.class)));
   }
 
     @Override
