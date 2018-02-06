@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.parktaeim.all_about_sejong.AllCenterItem;
+import com.example.parktaeim.all_about_sejong.DayCareCenterItem;
 import com.example.parktaeim.all_about_sejong.R;
 
 import java.util.ArrayList;
@@ -18,9 +18,9 @@ import java.util.ArrayList;
 
 public class AllCenterRecyclerViewAdapter extends RecyclerView.Adapter<AllCenterRecyclerViewAdapter.ViewHolder>{
 
-    private ArrayList<AllCenterItem> centerItems = new ArrayList<>();
+    private ArrayList<DayCareCenterItem> centerItems = new ArrayList<>();
 
-    public AllCenterRecyclerViewAdapter(ArrayList<AllCenterItem> centerItems) {
+    public AllCenterRecyclerViewAdapter(ArrayList<DayCareCenterItem> centerItems) {
         this.centerItems = centerItems;
     }
 
@@ -33,8 +33,8 @@ public class AllCenterRecyclerViewAdapter extends RecyclerView.Adapter<AllCenter
 
     @Override
     public void onBindViewHolder(AllCenterRecyclerViewAdapter.ViewHolder holder, int position) {
-        holder.centerNameTv.setText(centerItems.get(position).getCenterName());
-        holder.centerAddressTv.setText(centerItems.get(position).getCenterAddress());
+        holder.centerNameTv.setText(centerItems.get(position).getName());
+        holder.centerAddressTv.setText(centerItems.get(position).getAddress());
 
     }
 
