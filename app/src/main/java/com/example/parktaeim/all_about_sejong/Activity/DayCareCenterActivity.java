@@ -1,5 +1,6 @@
 package com.example.parktaeim.all_about_sejong.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.UiThread;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.parktaeim.all_about_sejong.DayCareCenterItem;
 import com.example.parktaeim.all_about_sejong.R;
+import com.example.parktaeim.all_about_sejong.RecyclerViewClickListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,7 +31,7 @@ import java.util.ArrayList;
  * Created by parktaeim on 2018. 2. 2..
  */
 
-public class DayCareCenterActivity extends AppCompatActivity implements View.OnClickListener{
+public class DayCareCenterActivity extends AppCompatActivity{
 
     private ImageView backIcon;
     private TextView nearTextView;
@@ -51,18 +53,34 @@ public class DayCareCenterActivity extends AppCompatActivity implements View.OnC
         backIcon.setOnClickListener(v->finish());
 
         setRecycerView();
+
+        recyclerView = (RecyclerView) findViewById(R.id.allCenter_recyclerView);
+        recyclerView.addOnItemTouchListener(new RecyclerViewClickListener(getApplicationContext(), recyclerView, new RecyclerViewClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(DayCareCenterActivity.this,DayCareCenterDetailActivity.class);
+                intent.putExtra("name",dayCareCenterItemArrayList.get(position).getName());
+                intent.putExtra("type",dayCareCenterItemArrayList.get(position).getType());
+                intent.putExtra("isCar",dayCareCenterItemArrayList.get(position).getCar());
+                intent.putExtra("tellNum",dayCareCenterItemArrayList.get(position).getTellNum());
+                intent.putExtra("cctvCount",dayCareCenterItemArrayList.get(position).getCctvCount());
+                intent.putExtra("address",dayCareCenterItemArrayList.get(position).getAddress());
+                intent.putExtra("studentCount",dayCareCenterItemArrayList.get(position).getStudentCount());
+                intent.putExtra("teacherCount",dayCareCenterItemArrayList.get(position).getTeacherCount());
+                intent.putExtra("playgroundCount",dayCareCenterItemArrayList.get(position).getPlaygroundCount());
+                intent.putExtra("roomCount",dayCareCenterItemArrayList.get(position).getRoomCount());
+                startActivity(intent);
+
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+
+            }
+        }));
     }
 
-    private void setRecycerView() {
-
-        getData();
-
-
-
-    }
-
-
-    private void getData(){
+    private void setRecycerView(){
         new Thread() {
             @Override
             public void run() {
@@ -163,8 +181,5 @@ public class DayCareCenterActivity extends AppCompatActivity implements View.OnC
         return arrayList;
     }
 
-    @Override
-    public void onClick(View v) {
 
-    }
 }

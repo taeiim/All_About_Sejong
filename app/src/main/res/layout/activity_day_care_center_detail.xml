@@ -40,8 +40,8 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="110dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginTop="90dp"
                 app:cardBackgroundColor="#F0FFFFFF"
                 app:cardCornerRadius="10dp">
@@ -49,8 +49,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
                     android:gravity="center"
+                    android:orientation="horizontal"
                     android:padding="16dp">
 
                     <LinearLayout
@@ -61,16 +61,18 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:id="@+id/centerDetail_isBus_ImageView"
                             android:layout_width="55dp"
                             android:layout_height="55dp"
-                            android:src="@drawable/icon_school_bus"
-                            android:layout_marginBottom="5dp"/>
+                            android:layout_marginBottom="5dp"
+                            android:src="@drawable/icon_school_bus" />
 
                         <TextView
+                            android:id="@+id/centerDetail_isBusTv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="통학버스 운영"
-                            android:textColor="#000"/>
+                            android:textColor="#000" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -81,20 +83,23 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:id="@+id/centerDetail_type_img"
                             android:layout_width="55dp"
                             android:layout_height="55dp"
-                            android:src="@drawable/icon_home"
                             android:layout_marginBottom="5dp"
-                            android:padding="3dp"/>
+                            android:padding="3dp"
+                            android:src="@drawable/icon_home" />
 
                         <TextView
+                            android:id="@+id/centerDetail_typeTv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="가정"
-                            android:textColor="#000"/>
+                            android:textColor="#000" />
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/callLayout"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -104,25 +109,67 @@
                         <ImageView
                             android:layout_width="55dp"
                             android:layout_height="55dp"
-                            android:src="@drawable/icon_phone"
-                            android:layout_marginBottom="5dp"/>
+                            android:layout_marginBottom="5dp"
+                            android:src="@drawable/icon_phone" />
 
                         <TextView
+                            android:id="@+id/centerDetail_callTv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="전화 걸기"
-                            android:textColor="#000"/>
+                            android:textColor="#000" />
                     </LinearLayout>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
         </FrameLayout>
 
+        <android.support.v7.widget.CardView
+            android:id="@+id/centerDetail_callCardView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:cardCornerRadius="@dimen/centerDetail_cardview_corner"
+            app:cardElevation="@dimen/centerDetail_cardview_elevation"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="8dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/icon_call"/>
+
+                <TextView
+                    android:id="@+id/centerDetail_tellNumTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="24dp"
+                    android:gravity="center"
+                    android:text="0000000000"
+                    android:textColor="#000"
+                    android:textSize="16dp"/>
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
             android:orientation="vertical">
+
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
@@ -155,12 +202,13 @@
                         android:textSize="@dimen/centerDetail_cardview_textSize" />
 
                     <TextView
+                        android:id="@+id/cctvCountTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="24dp"
-                        android:text="12"
+                        android:text="0"
                         android:textColor="#000"
                         android:textSize="@dimen/centerDetail_cardview_bigTextSize" />
                 </RelativeLayout>
@@ -198,12 +246,13 @@
                         android:textSize="@dimen/centerDetail_cardview_textSize" />
 
                     <TextView
+                        android:id="@+id/teacherCountTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="24dp"
-                        android:text="7"
+                        android:text="0"
                         android:textColor="#000"
                         android:textSize="@dimen/centerDetail_cardview_bigTextSize" />
 
@@ -241,12 +290,13 @@
                         android:textSize="@dimen/centerDetail_cardview_textSize" />
 
                     <TextView
+                        android:id="@+id/studentCountTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="24dp"
-                        android:text="80"
+                        android:text="0"
                         android:textColor="#000"
                         android:textSize="@dimen/centerDetail_cardview_bigTextSize" />
 
@@ -271,8 +321,8 @@
                         android:layout_width="@dimen/centerDetail_cardview_iconSize"
                         android:layout_height="@dimen/centerDetail_cardview_iconSize"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/icon_center_room"
-                        android:padding="2dp"/>
+                        android:padding="2dp"
+                        android:src="@drawable/icon_center_room" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -285,12 +335,13 @@
                         android:textSize="@dimen/centerDetail_cardview_textSize" />
 
                     <TextView
+                        android:id="@+id/roomCountTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="24dp"
-                        android:text="12"
+                        android:text="0"
                         android:textColor="#000"
                         android:textSize="@dimen/centerDetail_cardview_bigTextSize" />
 
@@ -299,16 +350,78 @@
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
-                app:cardCornerRadius="8dp"
-                android:layout_marginTop="8dp">
+                android:layout_height="@dimen/centerDetail_cardview_height"
+                android:layout_marginBottom="@dimen/centerDetail_cardview_marginBottom"
+                app:cardCornerRadius="@dimen/centerDetail_cardview_corner"
+                app:cardElevation="@dimen/centerDetail_cardview_elevation">
 
-                <fragment
-                    android:id="@+id/googleMap"
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    class="com.google.android.gms.maps.MapFragment"/>
+                    android:layout_marginLeft="24dp">
 
+                    <ImageView
+                        android:id="@+id/img5"
+                        android:layout_width="@dimen/centerDetail_cardview_iconSize"
+                        android:layout_height="@dimen/centerDetail_cardview_iconSize"
+                        android:layout_centerVertical="true"
+                        android:padding="2dp"
+                        android:src="@drawable/icon_playground" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                        android:layout_toRightOf="@+id/img5"
+                        android:text="놀이터수"
+                        android:textColor="#000"
+                        android:textSize="@dimen/centerDetail_cardview_textSize" />
+
+                    <TextView
+                        android:id="@+id/playgroundCountTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="24dp"
+                        android:text="0"
+                        android:textColor="#000"
+                        android:textSize="@dimen/centerDetail_cardview_bigTextSize" />
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <fragment
+                        android:id="@+id/googleMap"
+                        class="com.google.android.gms.maps.MapFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"/>
+
+                    <TextView
+                        android:id="@+id/centerDetail_addressTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text=""
+                        android:textColor="#000"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
             </android.support.v7.widget.CardView>
         </LinearLayout>
     </LinearLayout>

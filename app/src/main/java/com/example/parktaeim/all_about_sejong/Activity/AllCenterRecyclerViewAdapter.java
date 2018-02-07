@@ -35,7 +35,11 @@ public class AllCenterRecyclerViewAdapter extends RecyclerView.Adapter<AllCenter
     public void onBindViewHolder(AllCenterRecyclerViewAdapter.ViewHolder holder, int position) {
         holder.centerNameTv.setText(centerItems.get(position).getName());
         holder.centerAddressTv.setText(centerItems.get(position).getAddress());
-
+        if(centerItems.get(position).getCar()){
+            holder.centerBusImageView.setImageResource(R.drawable.icon_school_bus);
+        }else{
+            holder.centerBusImageView.setImageResource(R.drawable.icon_nobus);
+        }
     }
 
     @Override
