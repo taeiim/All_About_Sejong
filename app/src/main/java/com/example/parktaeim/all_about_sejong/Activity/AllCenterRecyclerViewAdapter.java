@@ -1,6 +1,7 @@
 package com.example.parktaeim.all_about_sejong.Activity;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +20,11 @@ import java.util.ArrayList;
 public class AllCenterRecyclerViewAdapter extends RecyclerView.Adapter<AllCenterRecyclerViewAdapter.ViewHolder>{
 
     private ArrayList<DayCareCenterItem> centerItems = new ArrayList<>();
+    private ArrayList<DayCareCenterItem> itemsCopy = new ArrayList<>();
 
     public AllCenterRecyclerViewAdapter(ArrayList<DayCareCenterItem> centerItems) {
         this.centerItems = centerItems;
+        itemsCopy.addAll(centerItems);
     }
 
     @Override
@@ -61,5 +64,21 @@ public class AllCenterRecyclerViewAdapter extends RecyclerView.Adapter<AllCenter
             centerTypeImageView = (ImageView) itemView.findViewById(R.id.center_type_imageView);
 
         }
+    }
+
+    public void filter(String text) {
+        centerItems.clear();
+        if(text.isEmpty()){
+            centerItems.addAll(itemsCopy);
+
+        } else{
+            text = text.toLowerCase();
+            for(DayCareCenterItem item: itemsCopy){
+                if(item.name.toLowerCase().contains(text) || item.address.toLowerCase().contains(text)){
+                    centerItems.add(item);
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 }

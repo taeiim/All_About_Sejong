@@ -39,4 +39,5 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.0'
     implementation 'com.google.android.gms:play-services-maps:11.8.0'
     implementation 'com.google.android.gms:play-services-location:11.8.0'
+    compile 'com.miguelcatalan:materialsearchview:1.4.0'
 }

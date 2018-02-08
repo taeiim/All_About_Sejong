@@ -1,6 +1,9 @@
 package com.example.parktaeim.all_about_sejong.Activity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.UiThread;
@@ -9,13 +12,17 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.example.parktaeim.all_about_sejong.DayCareCenterItem;
 import com.example.parktaeim.all_about_sejong.R;
 import com.example.parktaeim.all_about_sejong.RecyclerViewClickListener;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,13 +41,12 @@ import java.util.ArrayList;
 public class DayCareCenterActivity extends AppCompatActivity{
 
     private ImageView backIcon;
-    private TextView nearTextView;
+    private ImageView searchIcon;
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private AllCenterRecyclerViewAdapter adapter;
 
-    private StringBuffer stringBuffer;
     private String jsonString = null;
     ArrayList<DayCareCenterItem> dayCareCenterItemArrayList;
 
@@ -49,6 +55,10 @@ public class DayCareCenterActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_day_care_center);
 
+        android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.center_toolbar);
+        setSupportActionBar(toolbar);
+
+        searchIcon = (ImageView) findViewById(R.id.icon_search);
         backIcon = (ImageView) findViewById(R.id.center_backIcon);
         backIcon.setOnClickListener(v->finish());
 
@@ -78,6 +88,38 @@ public class DayCareCenterActivity extends AppCompatActivity{
 
             }
         }));
+
+        setSearchView();
+    }
+
+    private void setSearchView() {
+        MaterialSearchView searchView = (MaterialSearchView) findViewById(R.id.center_searchView);
+
+        searchIcon.setOnClickListener(v -> searchView.showSearch());
+
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                adapter.filter(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.filter(newText);
+                return true;
+            }
+        });
+
+        searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+            @Override
+            public void onSearchViewShown() {
+            }
+
+            @Override
+            public void onSearchViewClosed() {
+            }
+        });
     }
 
     private void setRecycerView(){
@@ -101,17 +143,10 @@ public class DayCareCenterActivity extends AppCompatActivity{
                         stringBuffer.append(new String(b, 0, i));
                     }
 
-                    Log.d("get JSON=====", stringBuffer.toString());
-                    System.out.println(stringBuffer.toString());
-
                     jsonString = stringBuffer.toString();
 
                     JSONObject jsonObject = new JSONObject(jsonString);
-                    Log.d("after JSON===", jsonObject.toString());
-
                     JSONObject resultObject = (JSONObject) jsonObject.get("result");
-                    Log.d("after JSONARRAY===", resultObject.toString());
-
                     JSONArray resultArray = resultObject.getJSONArray("records");
                     Log.d("RESULT JSON===", resultArray.toString());
 
@@ -180,6 +215,5 @@ public class DayCareCenterActivity extends AppCompatActivity{
         Log.d("arrayList",arrayList.toString());
         return arrayList;
     }
-
 
 }
