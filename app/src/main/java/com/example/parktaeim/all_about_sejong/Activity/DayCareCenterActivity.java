@@ -23,6 +23,7 @@ import com.example.parktaeim.all_about_sejong.DayCareCenterItem;
 import com.example.parktaeim.all_about_sejong.R;
 import com.example.parktaeim.all_about_sejong.RecyclerViewClickListener;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,6 +51,8 @@ public class DayCareCenterActivity extends AppCompatActivity{
     private String jsonString = null;
     ArrayList<DayCareCenterItem> dayCareCenterItemArrayList;
 
+    private AVLoadingIndicatorView avi;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +61,7 @@ public class DayCareCenterActivity extends AppCompatActivity{
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.center_toolbar);
         setSupportActionBar(toolbar);
 
+        avi = (AVLoadingIndicatorView) findViewById(R.id.avi);
         searchIcon = (ImageView) findViewById(R.id.icon_search);
         backIcon = (ImageView) findViewById(R.id.center_backIcon);
         backIcon.setOnClickListener(v->finish());
@@ -89,6 +93,7 @@ public class DayCareCenterActivity extends AppCompatActivity{
             }
         }));
 
+        startAnim();
         setSearchView();
     }
 
@@ -120,6 +125,14 @@ public class DayCareCenterActivity extends AppCompatActivity{
             public void onSearchViewClosed() {
             }
         });
+    }
+
+    void startAnim(){
+        avi.show();
+    }
+
+    void stopAnim(){
+        avi.hide();
     }
 
     private void setRecycerView(){
@@ -163,6 +176,8 @@ public class DayCareCenterActivity extends AppCompatActivity{
 
                             adapter = new AllCenterRecyclerViewAdapter(dayCareCenterItemArrayList);
                             recyclerView.setAdapter(adapter);
+
+                            stopAnim();
                         }
                     });
                 } catch (MalformedURLException e) {
