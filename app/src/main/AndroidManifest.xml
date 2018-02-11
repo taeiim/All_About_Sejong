@@ -3,6 +3,10 @@
     package="com.example.parktaeim.all_about_sejong">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -20,10 +24,14 @@
         </activity>
         <activity android:name=".Activity.DayCareCenterActivity"/>
         <activity android:name=".Activity.DayCareCenterDetailActivity"/>
+        <activity android:name=".Activity.ToiletActivity"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyApNxvsu5Ecka9FyRXhR4rnT0mXWb1KoDU"/>
+
+        <meta-data android:name="com.kakao.sdk.AppKey" android:value="80eae9cf411ea13714e5db313a7d4cac"/>
+
     </application>
 
 </manifest>

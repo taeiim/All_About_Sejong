@@ -64,8 +64,7 @@
                             android:id="@+id/centerDetail_isBus_ImageView"
                             android:layout_width="55dp"
                             android:layout_height="55dp"
-                            android:layout_marginBottom="5dp"
-                            android:src="@drawable/icon_school_bus" />
+                            android:layout_marginBottom="5dp"/>
 
                         <TextView
                             android:id="@+id/centerDetail_isBusTv"
@@ -87,8 +86,7 @@
                             android:layout_width="55dp"
                             android:layout_height="55dp"
                             android:layout_marginBottom="5dp"
-                            android:padding="3dp"
-                            android:src="@drawable/icon_home" />
+                            android:padding="3dp" />
 
                         <TextView
                             android:id="@+id/centerDetail_typeTv"
@@ -109,8 +107,7 @@
                         <ImageView
                             android:layout_width="55dp"
                             android:layout_height="55dp"
-                            android:layout_marginBottom="5dp"
-                            android:src="@drawable/icon_phone" />
+                            android:layout_marginBottom="5dp" />
 
                         <TextView
                             android:id="@+id/centerDetail_callTv"
@@ -408,7 +405,7 @@
                         android:id="@+id/googleMap"
                         class="com.google.android.gms.maps.MapFragment"
                         android:layout_width="match_parent"
-                        android:layout_height="220dp"/>
+                        android:layout_height="320dp"/>
 
                     <TextView
                         android:id="@+id/centerDetail_addressTv"
@@ -418,8 +415,9 @@
                         android:textColor="#000"
                         android:layout_marginRight="16dp"
                         android:layout_marginLeft="16dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginTop="8dp"/>
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginTop="10dp"
+                        android:textSize="15dp"/>
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>

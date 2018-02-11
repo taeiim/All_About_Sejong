@@ -21,6 +21,15 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+
 /**
  * Created by parktaeim on 2018. 2. 2..
  */
@@ -36,12 +45,17 @@ public class DayCareCenterDetailActivity extends AppCompatActivity implements On
     private TextView isBusTv;
     private TextView tellNumTv;
     private TextView addressTv;
+    private TextView playgroundCountTv;
 
     private ImageView backIcon;
     private LinearLayout callLayout;
     private CardView callCardView;
 
     private String tellNum;
+    private String address;
+    private String name;
+
+    private GoogleMap googleMap;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,6 +75,7 @@ public class DayCareCenterDetailActivity extends AppCompatActivity implements On
         isBusTv = (TextView) findViewById(R.id.centerDetail_isBusTv);
         tellNumTv = (TextView) findViewById(R.id.centerDetail_tellNumTv);
         addressTv = (TextView) findViewById(R.id.centerDetail_addressTv);
+        playgroundCountTv = (TextView) findViewById(R.id.playgroundCountTv);
 
         backIcon = (ImageView) findViewById(R.id.centerDetail_backIcon);
         callCardView = (CardView) findViewById(R.id.centerDetail_callCardView);
@@ -79,18 +94,91 @@ public class DayCareCenterDetailActivity extends AppCompatActivity implements On
         });
 
         setData();
+        getLatLon();
+    }
+
+    private void getLatLon() {
+        String clientId = "eHm6juoXIARjUBibf0n1";//애플리케이션 클라이언트 아이디값";
+        String clientSecret = "h7O6vSoxwj";//애플리케이션 클라이언트 시크릿값";
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+
+                try {
+                    // Naver API (주소 -> 좌표)
+                    String addr = URLEncoder.encode(address, "UTF-8");
+                    String apiURL = "https://openapi.naver.com/v1/map/geocode?query=" + addr;
+                    URL url = new URL(apiURL);
+                    HttpURLConnection con = (HttpURLConnection)url.openConnection();
+                    con.setRequestMethod("GET");
+                    con.setRequestProperty("X-Naver-Client-Id", clientId);
+                    con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
+                    int responseCode = con.getResponseCode();
+                    BufferedReader br;
+                    Log.d("RESPONSE CODE ==",String.valueOf(responseCode));
+                    if(responseCode==200) {
+                        br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                    } else {
+                        br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+                    }
+                    String inputLine;
+                    StringBuffer response = new StringBuffer();
+                    while ((inputLine = br.readLine()) != null) {
+                        response.append(inputLine);
+                    }
+                    br.close();
+
+                    String jsonString = response.toString();
+
+                    JSONObject jsonObject = new JSONObject(jsonString);
+                    JSONObject resultObject = (JSONObject) jsonObject.get("result");
+                    JSONArray resultArray = resultObject.getJSONArray("items");
+                    JSONObject resultObject2 = (JSONObject) resultArray.get(0);
+                    JSONObject pointObject = (JSONObject) resultObject2.getJSONObject("point");
+
+                    double lon = pointObject.getDouble("x");
+                    double lat = pointObject.getDouble("y");
+                    Log.d("Lat==="+lat, "Lon=="+lon);
+
+                    setUpMap(lat,lon);
+
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+
+            }
+        }.start();
+
+    }
+
+    private void setUpMap(double lat, double lon){
+        LatLng dest = new LatLng(lat, lon);
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(dest);
+        markerOptions.title(name);
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                googleMap.addMarker(markerOptions);
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(dest));
+                googleMap.animateCamera(CameraUpdateFactory.zoomTo(16));
+            }
+        });
+
     }
 
     private void setData() {
         Intent intent = getIntent();
-        String name = intent.getExtras().getString("name");
+        name = intent.getExtras().getString("name");
         String type = intent.getExtras().getString("type");
         int cctvCount = intent.getExtras().getInt("cctvCount");
         int teacherCount = intent.getExtras().getInt("teacherCount");
         int playgroundCount = intent.getExtras().getInt("playgroundCount");
         int roomCount = intent.getExtras().getInt("roomCount");
         int studentCount = intent.getExtras().getInt("studentCount");
-        String address = intent.getExtras().getString("address");
+        address = intent.getExtras().getString("address");
         Boolean isBus = intent.getExtras().getBoolean("isCar");
         tellNum = intent.getExtras().getString("tellNum");
 
@@ -102,6 +190,7 @@ public class DayCareCenterDetailActivity extends AppCompatActivity implements On
         studentCountTv.setText(String.valueOf(studentCount));
         addressTv.setText(address);
         tellNumTv.setText(tellNum);
+        playgroundCountTv.setText(String.valueOf(playgroundCount));
 
         if(isBus){
             isBusTv.setText("통학버스 운영");
@@ -112,17 +201,8 @@ public class DayCareCenterDetailActivity extends AppCompatActivity implements On
 
     }
 
-
     @Override
-
     public void onMapReady(final GoogleMap map) {
-        LatLng SEOUL = new LatLng(37.56, 126.97);
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(SEOUL);
-        markerOptions.title("서울");
-        markerOptions.snippet("한국의 수도");
-        map.addMarker(markerOptions);
-        map.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
-        map.animateCamera(CameraUpdateFactory.zoomTo(15));
+        googleMap = map;
     }
 }

@@ -25,8 +25,7 @@
                 android:id="@+id/mainBackImg"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/main_topImage_height"
-                android:scaleType="centerCrop"
-                android:src="@drawable/img_beach"/>
+                android:scaleType="centerCrop"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -78,7 +77,7 @@
                     </android.support.v7.widget.CardView>
 
                     <android.support.v7.widget.CardView
-                        android:id="@+id/detailCardView"
+                        android:id="@+id/toiletCardView"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/main_cardview_heignt"
                         android:layout_gravity="center_horizontal"
@@ -99,7 +98,7 @@
                                 android:layout_width="80dp"
                                 android:layout_height="80dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/icon_kindergarten"
+                                android:src="@drawable/icon_toilet"
                                 android:padding="8dp"/>
 
                             <TextView
@@ -107,7 +106,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="8dp"
-                                android:text="어린이집"
+                                android:text="공중 화장실"
                                 android:textSize="@dimen/main_cardview_textsize"
                                 android:textColor="#000"/>
                         </LinearLayout>
@@ -139,10 +138,10 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
+                                android:layout_width="85dp"
+                                android:layout_height="85dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/icon_kindergarten"
+                                android:src="@drawable/icon_gas_station"
                                 android:padding="8dp"/>
 
                             <TextView
@@ -150,7 +149,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="8dp"
-                                android:text="어린이집"
+                                android:text="주유소"
                                 android:textSize="@dimen/main_cardview_textsize"
                                 android:textColor="#000"/>
                         </LinearLayout>

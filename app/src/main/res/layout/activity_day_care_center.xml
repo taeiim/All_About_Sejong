@@ -67,7 +67,8 @@
             <com.miguelcatalan.materialsearchview.MaterialSearchView
                 android:id="@+id/center_searchView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="어린이집명, 주소로 검색가능"/>
 
         </FrameLayout>
 
