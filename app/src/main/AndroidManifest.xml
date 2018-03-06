@@ -14,20 +14,22 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:largeHeap="true">
         <activity android:name=".Activity.MainActivity">
-
-        </activity>
-        <activity android:name=".Activity.DayCareCenterActivity"/>
-        <activity android:name=".Activity.DayCareCenterDetailActivity"/>
-        <activity android:name=".Activity.PostOfficeActivity"/>
-        <activity android:name=".Activity.ClubActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activity.DayCareCenterActivity"/>
+        <activity android:name=".Activity.DayCareCenterDetailActivity"/>
+        <activity android:name=".Activity.PostOfficeActivity"/>
+        <activity android:name=".Activity.ClubActivity">
+
+        </activity>
+        <activity android:name=".Activity.ToiletActivity"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

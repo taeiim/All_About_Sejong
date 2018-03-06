@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView daycarecenterImg;
     private CardView daycarecenterCardView;
     private CardView toiletCardView;
+    private CardView clubCardView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,9 +35,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         daycarecenterCardView = (CardView) findViewById(R.id.dayCareCenter_cardView);
         toiletCardView = (CardView) findViewById(R.id.toiletCardView);
+        clubCardView = (CardView) findViewById(R.id.clubCardView);
 
         daycarecenterCardView.setOnClickListener(this);
         toiletCardView.setOnClickListener(this);
+        clubCardView.setOnClickListener(this);
 
         ImageView backImg = (ImageView) findViewById(R.id.mainBackImg);
 //        Glide.with(this).load(R.drawable.img_beach).into(backImg);
@@ -53,7 +56,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.toiletCardView:
-//                startActivity(new Intent(MainActivity.this, ToiletActivity.class));
+                startActivity(new Intent(MainActivity.this, ToiletActivity.class));
+                break;
+
+            case R.id.clubCardView:
+                startActivity(new Intent(MainActivity.this, ClubActivity.class));
                 break;
 
         }
