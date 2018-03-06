@@ -6,9 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.example.parktaeim.all_about_sejong.DayCareCenterItem;
 import com.example.parktaeim.all_about_sejong.R;
-import com.example.parktaeim.all_about_sejong.ToiletItem;
+import com.example.parktaeim.all_about_sejong.Model.ToiletItem;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -23,7 +22,6 @@ import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 

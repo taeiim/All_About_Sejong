@@ -1,25 +1,18 @@
 package com.example.parktaeim.all_about_sejong.Activity;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.UiThread;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toolbar;
 
-import com.example.parktaeim.all_about_sejong.DayCareCenterItem;
+import com.example.parktaeim.all_about_sejong.Adapter.AllCenterRecyclerViewAdapter;
+import com.example.parktaeim.all_about_sejong.Model.DayCareCenterItem;
 import com.example.parktaeim.all_about_sejong.R;
 import com.example.parktaeim.all_about_sejong.RecyclerViewClickListener;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
@@ -39,7 +32,7 @@ import java.util.ArrayList;
  * Created by parktaeim on 2018. 2. 2..
  */
 
-public class DayCareCenterActivity extends AppCompatActivity{
+public class  DayCareCenterActivity extends AppCompatActivity{
 
     private ImageView backIcon;
     private ImageView searchIcon;

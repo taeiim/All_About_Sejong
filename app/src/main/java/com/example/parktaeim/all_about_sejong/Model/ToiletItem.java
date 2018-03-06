@@ -1,4 +1,4 @@
-package com.example.parktaeim.all_about_sejong;
+package com.example.parktaeim.all_about_sejong.Model;
 
 /**
  * Created by parktaeim on 2018. 2. 11..

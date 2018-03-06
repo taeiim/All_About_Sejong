@@ -8,35 +8,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.ToolbarWidgetWrapper;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toolbar;
 
-import com.bumptech.glide.Glide;
-import com.example.parktaeim.all_about_sejong.DayCareCenterItem;
 import com.example.parktaeim.all_about_sejong.R;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONStringer;
-
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
 import java.security.MessageDigest;
-import java.util.ArrayList;
 
 /**
  * Created by parktaeim on 2018. 1. 28..
@@ -74,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.toiletCardView:
-                startActivity(new Intent(MainActivity.this, ToiletActivity.class));
+//                startActivity(new Intent(MainActivity.this, ToiletActivity.class));
                 break;
 
         }
