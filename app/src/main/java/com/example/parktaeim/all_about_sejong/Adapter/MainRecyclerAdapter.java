@@ -1,9 +1,13 @@
 package com.example.parktaeim.all_about_sejong.Adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,9 +24,11 @@ import java.util.zip.Inflater;
 
 public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapter.ViewHolder> {
     List<MainItem> mainItemList = new ArrayList<>();
+    Context context;
 
-    public MainRecyclerAdapter(List<MainItem> mainItemList) {
+    public MainRecyclerAdapter(List<MainItem> mainItemList, Context context) {
         this.mainItemList = mainItemList;
+        this.context = context;
     }
 
     @Override
@@ -36,6 +42,21 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     public void onBindViewHolder(MainRecyclerAdapter.ViewHolder holder, int position) {
         holder.cardview_imgView.setImageResource(mainItemList.get(position).getImg());
         holder.cardview_titleTv.setText(mainItemList.get(position).getTitle());
+
+        holder.itemView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch(event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        Animation anim = AnimationUtils.loadAnimation(context,R.anim.scale_main_img);
+                        holder.cardview_imgView.startAnimation(anim);
+                        break;
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
     }
 
     @Override

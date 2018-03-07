@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         List<Banner> banners = new ArrayList<>();
         banners.add(new RemoteBanner("http://cfile1.uf.tistory.com/image/275A934355E46C592A0445"));
+        banners.add(new RemoteBanner("https://c-lj.gnst.jp/public/article/detail/a/00/00/a0000449/img/basic/a0000449_main.jpg?20170412195903"));
         banners.add(new RemoteBanner("http://i43.tinypic.com/2598wb7.jpg"));
 //        banners.add(new DrawableBanner(R.drawable.drawable));
 
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         setUpRecyclerData();
 
-        adapter = new MainRecyclerAdapter(mainItemArrayList);
+        adapter = new MainRecyclerAdapter(mainItemArrayList,getApplicationContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
 

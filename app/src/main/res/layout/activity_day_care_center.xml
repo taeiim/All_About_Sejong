@@ -26,8 +26,9 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/center_toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:contentInsetStart="0dp">
+                android:layout_height="@dimen/main_toolbar_height"
+                app:contentInsetStart="0dp"
+                android:background="#FFF">
 
                 <RelativeLayout
                     android:layout_width="match_parent"

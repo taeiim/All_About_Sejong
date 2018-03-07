@@ -5,64 +5,45 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/center_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="@dimen/main_toolbar_height"
+        android:background="#FFF"
+        app:contentInsetStart="0dp">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/center_toolbar"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:contentInsetStart="0dp">
+            android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/club_backIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/icon_back" />
 
-                <ImageView
-                    android:id="@+id/club_backIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="16dp"
-                    android:src="@drawable/icon_back" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
+                android:text="동호회"
+                android:textColor="@color/colorItem"
+                android:textSize="15dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerInParent="true"
-                    android:text="동호회"
-                    android:textColor="@color/colorItem"
-                    android:textSize="15dp" />
+        </RelativeLayout>
 
-                <!--<ImageView-->
-                <!--android:id="@+id/icon_search"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_alignParentRight="true"-->
-                <!--android:layout_centerVertical="true"-->
-                <!--android:layout_marginRight="8dp"-->
-                <!--android:src="@drawable/ic_action_action_search"-->
-                <!--android:tint="@color/colorPrimaryDark" />-->
-            </RelativeLayout>
-
-        </android.support.v7.widget.Toolbar>
-
-        <!--<com.miguelcatalan.materialsearchview.MaterialSearchView-->
-        <!--android:id="@+id/center_searchView"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:hint="어린이집명, 주소로 검색가능"/>-->
-
-    </FrameLayout>
+    </android.support.v7.widget.Toolbar>
 
 
     <android.support.design.widget.TabLayout
         android:id="@+id/club_tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="40dp"
+        app:tabBackground="@android:color/white" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/club_viewPager"
