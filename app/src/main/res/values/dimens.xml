@@ -3,8 +3,8 @@
     <dimen name="main_topImage_height">250dp</dimen>
     <dimen name="main_cardview_textsize">16dp</dimen>
     <dimen name="main_cardview_margin">18dp</dimen>
-    <dimen name="main_cardview_corner">12dp</dimen>
-    <dimen name="main_cardview_heignt">180dp</dimen>
+    <dimen name="main_cardview_corner">6dp</dimen>
+    <dimen name="main_cardview_heignt">140dp</dimen>
     <dimen name="main_cardview_marginBottom">1dp</dimen>
     <dimen name="centerDetail_cardview_height"> 70dp </dimen>
     <dimen name="centerDetail_cardview_marginBottom"> 8dp </dimen>

@@ -7,277 +7,38 @@
     android:orientation="vertical"
     tools:context="com.example.parktaeim.all_about_sejong.Activity.MainActivity">
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:focusableInTouchMode="true">
 
-            <LinearLayout
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_marginTop="210dp"-->
+                <!--android:background="#EFEBE9" />-->
+
+            <ss.com.bannerslider.views.BannerSlider
+                android:id="@+id/banner_slider"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                app:loopSlides="true"
+                app:interval="3000"
+                app:defaultBanner="1"
+                app:defaultIndicators="dash" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/main_recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="210dp"
-                android:background="#EFEBE9" />
-            <ImageView
-                android:id="@+id/mainBackImg"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/main_topImage_height"
-                android:scaleType="centerCrop"/>
+                android:padding="5dp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="210dp"
-                android:orientation="vertical">
+        </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/dayCareCenter_cardView"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/main_cardview_heignt"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="@dimen/main_cardview_marginBottom"
-                        android:layout_marginLeft="@dimen/main_cardview_margin"
-                        android:layout_marginRight="@dimen/main_cardview_marginBottom"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="@dimen/main_cardview_corner"
-                        app:cardUseCompatPadding="true">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:id="@+id/dayCareCenter_imgView"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/icon_kindergarten"
-                                android:padding="8dp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="8dp"
-                                android:text="어린이집"
-                                android:textSize="@dimen/main_cardview_textsize"
-                                android:textColor="#000"/>
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/toiletCardView"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/main_cardview_heignt"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="@dimen/main_cardview_marginBottom"
-                        android:layout_marginRight="@dimen/main_cardview_margin"
-                        android:layout_marginLeft="@dimen/main_cardview_marginBottom"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="@dimen/main_cardview_corner"
-                        app:cardUseCompatPadding="true">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/icon_toilet"
-                                android:padding="8dp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="8dp"
-                                android:text="공중 화장실"
-                                android:textSize="@dimen/main_cardview_textsize"
-                                android:textColor="#000"/>
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/main_cardview_heignt"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="@dimen/main_cardview_marginBottom"
-                        android:layout_marginLeft="@dimen/main_cardview_margin"
-                        android:layout_marginRight="@dimen/main_cardview_marginBottom"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="@dimen/main_cardview_corner"
-                        app:cardUseCompatPadding="true">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="85dp"
-                                android:layout_height="85dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/icon_gas_station"
-                                android:padding="8dp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="8dp"
-                                android:text="주유소"
-                                android:textSize="@dimen/main_cardview_textsize"
-                                android:textColor="#000"/>
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/clubCardView"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/main_cardview_heignt"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="@dimen/main_cardview_marginBottom"
-                        android:layout_marginRight="@dimen/main_cardview_margin"
-                        android:layout_marginLeft="@dimen/main_cardview_marginBottom"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="@dimen/main_cardview_corner"
-                        app:cardUseCompatPadding="true">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="100dp"
-                                android:layout_height="80dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/icon_club"
-                                android:padding="8dp"
-                                android:scaleType="centerCrop"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="8dp"
-                                android:text="동호회"
-                                android:textSize="@dimen/main_cardview_textsize"
-                                android:textColor="#000"/>
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/main_cardview_heignt"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="@dimen/main_cardview_marginBottom"
-                        android:layout_marginLeft="@dimen/main_cardview_margin"
-                        android:layout_marginRight="@dimen/main_cardview_marginBottom"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="@dimen/main_cardview_corner"
-                        app:cardUseCompatPadding="true">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/icon_kindergarten"
-                                android:padding="8dp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="8dp"
-                                android:text="어린이집"
-                                android:textSize="@dimen/main_cardview_textsize"
-                                android:textColor="#000"/>
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/main_cardview_heignt"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="@dimen/main_cardview_marginBottom"
-                        android:layout_marginRight="@dimen/main_cardview_margin"
-                        android:layout_marginLeft="@dimen/main_cardview_marginBottom"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="@dimen/main_cardview_corner"
-                        app:cardUseCompatPadding="true">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/icon_kindergarten"
-                                android:padding="8dp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="8dp"
-                                android:text="어린이집"
-                                android:textSize="@dimen/main_cardview_textsize"
-                                android:textColor="#000"/>
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </FrameLayout>
-
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 </LinearLayout>
