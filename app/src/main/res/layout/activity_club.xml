@@ -38,12 +38,12 @@
 
     </android.support.v7.widget.Toolbar>
 
-
     <android.support.design.widget.TabLayout
         android:id="@+id/club_tabLayout"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        app:tabBackground="@android:color/white" />
+        app:tabBackground="@android:color/white"
+        app:tabTextAppearance="@style/MainCustomTabText"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/club_viewPager"

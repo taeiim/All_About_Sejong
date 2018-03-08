@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setUpRecyclerView() {
         recyclerView = (RecyclerView) findViewById(R.id.main_recyclerView);
-        layoutManager = new GridLayoutManager(getApplicationContext(), 2);
+        layoutManager = new GridLayoutManager(getApplicationContext(), 3);
 
         setUpRecyclerData();
 

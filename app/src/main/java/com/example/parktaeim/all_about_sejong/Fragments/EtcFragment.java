@@ -49,11 +49,8 @@ public class EtcFragment extends android.support.v4.app.Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
 
-        clubItemArrayList.add(new ClubItem("기타치는 동호회", 20));
-        clubItemArrayList.add(new ClubItem("zzzzzzzzzz", 100));
-
-        clubAdapter = new ClubRecyclerViewAdapter(clubItemArrayList);
-        recyclerView.setAdapter(clubAdapter);
+//        clubAdapter = new ClubRecyclerViewAdapter(clubItemArrayList);
+//        recyclerView.setAdapter(clubAdapter);
 
         return view;
 

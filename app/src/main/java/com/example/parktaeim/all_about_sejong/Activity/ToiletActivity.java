@@ -11,6 +11,7 @@ import com.example.parktaeim.all_about_sejong.Model.ToiletItem;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -42,6 +43,8 @@ public class ToiletActivity extends AppCompatActivity implements OnMapReadyCallb
         FragmentManager fragmentManager = getFragmentManager();
         MapFragment mapFragment = (MapFragment) fragmentManager.findFragmentById(R.id.toilet_googleMap);
         mapFragment.getMapAsync(this);
+
+        MapsInitializer.initialize(getApplicationContext());
 
         getToiletData();
     }
@@ -101,11 +104,11 @@ public class ToiletActivity extends AppCompatActivity implements OnMapReadyCallb
                 double latitude = jsonObject.getDouble("위도");
                 double longitude = jsonObject.getDouble("경도");
 
-                Log.d("name length",String.valueOf(name.length()));
-                Log.d("tellnum length",String.valueOf(tellNum.length()));
-                Log.d("address length",String.valueOf(address.length()));
-                Log.d("opentime length",String.valueOf(openTime.length()));
-                Log.d("latitude length",String.valueOf(String.valueOf(latitude).length()));
+                Log.d("name length",String.valueOf(name));
+                Log.d("tellnum length",String.valueOf(tellNum));
+                Log.d("address length",String.valueOf(address));
+                Log.d("opentime length",String.valueOf(openTime));
+                Log.d("latitude length",String.valueOf(String.valueOf(latitude)));
 
                 if(name.length() != 0 && tellNum.length()!=0 && address.length() != 0 && openTime.length() !=0 && String.valueOf(latitude).length() !=0 ){
                     arrayList.add(new ToiletItem(openTime,address,latitude,longitude,tellNum,name));

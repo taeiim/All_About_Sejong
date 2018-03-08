@@ -10,6 +10,14 @@ import android.widget.ImageView;
 import com.example.parktaeim.all_about_sejong.Adapter.ClubPagerAdapter;
 import com.example.parktaeim.all_about_sejong.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 /**
  * Created by parktaeim on 2018. 3. 6..
  */
@@ -25,13 +33,12 @@ public class ClubActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.club_tabLayout);
         ImageView backIcon = (ImageView) findViewById(R.id.club_backIcon);
 
+
         ClubPagerAdapter clubPagerAdapter = new ClubPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(clubPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
-        backIcon.setOnClickListener(v->finish());
-
+        backIcon.setOnClickListener(v -> finish());
     }
-
 
 }

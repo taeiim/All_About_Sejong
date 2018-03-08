@@ -26,10 +26,8 @@
         <activity android:name=".Activity.DayCareCenterActivity"/>
         <activity android:name=".Activity.DayCareCenterDetailActivity"/>
         <activity android:name=".Activity.PostOfficeActivity"/>
-        <activity android:name=".Activity.ClubActivity">
-
-        </activity>
-        <activity android:name=".Activity.ToiletActivity"/>
+        <activity android:name=".Activity.ClubActivity" />
+        <activity android:name=".Activity.ToiletActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

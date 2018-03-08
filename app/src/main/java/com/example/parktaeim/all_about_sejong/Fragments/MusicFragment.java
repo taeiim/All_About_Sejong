@@ -49,11 +49,8 @@ public class MusicFragment extends android.support.v4.app.Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
 
-        clubItemArrayList.add(new ClubItem("일라일라",20));
-        clubItemArrayList.add(new ClubItem("피아노치는 동호회",100));
-
-        clubAdapter = new ClubRecyclerViewAdapter(clubItemArrayList);
-        recyclerView.setAdapter(clubAdapter);
+//        clubAdapter = new ClubRecyclerViewAdapter(clubItemArrayList);
+//        recyclerView.setAdapter(clubAdapter);
 
         return view;
     }
