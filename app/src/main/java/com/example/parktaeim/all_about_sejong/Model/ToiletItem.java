@@ -1,10 +1,12 @@
 package com.example.parktaeim.all_about_sejong.Model;
 
+import java.io.Serializable;
+
 /**
  * Created by parktaeim on 2018. 2. 11..
  */
 
-public class ToiletItem {
+public class ToiletItem implements Serializable{
     String toilet_openTime;
     String toilet_address;
     double toilet_latitude;

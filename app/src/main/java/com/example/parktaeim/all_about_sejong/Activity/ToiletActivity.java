@@ -1,18 +1,18 @@
 package com.example.parktaeim.all_about_sejong.Activity;
 
-import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.TextView;
 
-import com.example.parktaeim.all_about_sejong.R;
+import com.example.parktaeim.all_about_sejong.Adapter.AllCenterRecyclerViewAdapter;
+import com.example.parktaeim.all_about_sejong.Adapter.ToiletRecyclerViewAdapter;
 import com.example.parktaeim.all_about_sejong.Model.ToiletItem;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.MapsInitializer;
-import com.google.android.gms.maps.OnMapReadyCallback;
+import com.example.parktaeim.all_about_sejong.R;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -27,26 +27,43 @@ import java.net.URL;
 import java.util.ArrayList;
 
 /**
- * Created by parktaeim on 2018. 2. 11..
+ * Created by parktaeim on 2018. 3. 9..
  */
 
-public class ToiletActivity extends AppCompatActivity implements OnMapReadyCallback {
-    private GoogleMap googleMap;
+public class ToiletActivity extends AppCompatActivity {
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    private ToiletRecyclerViewAdapter adapter;
+
     private String jsonString = null;
     ArrayList<ToiletItem> toiletItemArrayList;
+    private TextView intentToiletMaps;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toilet);
 
-        FragmentManager fragmentManager = getFragmentManager();
-        MapFragment mapFragment = (MapFragment) fragmentManager.findFragmentById(R.id.toilet_googleMap);
-        mapFragment.getMapAsync(this);
+        intentToiletMaps = (TextView) findViewById(R.id.intentMapToilet_textView);
+        intentToiletMaps.setOnClickListener(v -> {
+            Intent intent = new Intent(ToiletActivity.this,ToiletMapsActivity.class);
+            intent.putExtra("ToiletArrayList",toiletItemArrayList);
+            startActivity(intent);
+//            startActivity(new Intent(ToiletActivity.this, ToiletMapsActivity.class));
 
-        MapsInitializer.initialize(getApplicationContext());
+        });
 
         getToiletData();
+//        setRecyclerView();
+
+    }
+
+    private void setRecyclerView() {
+        recyclerView = (RecyclerView) findViewById(R.id.toilet_recyclerview);
+        layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new ToiletRecyclerViewAdapter(toiletItemArrayList);
+        recyclerView.setAdapter(adapter);
     }
 
     private void getToiletData() {
@@ -82,6 +99,12 @@ public class ToiletActivity extends AppCompatActivity implements OnMapReadyCallb
                     toiletItemArrayList = getToiletList(resultArray);
                     Log.d("TOILET ARRAY LIST ==",toiletItemArrayList.toString());
 
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            setRecyclerView();
+                        }
+                    });
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -114,38 +137,17 @@ public class ToiletActivity extends AppCompatActivity implements OnMapReadyCallb
                     arrayList.add(new ToiletItem(openTime,address,latitude,longitude,tellNum,name));
                 }
 
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        MarkerOptions markerOptions = new MarkerOptions();
-                        markerOptions.position(new LatLng(latitude,longitude));
-                        markerOptions.title(name);
-                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_bathroom_onmap));
-                        googleMap.addMarker(markerOptions);
-                    }
-                });
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }
 
         Log.d("TOILET GET ARRAYLIST ==",arrayList.toString());
         return arrayList;
     }
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        this.googleMap = googleMap;
-
-        LatLng dest = new LatLng(36.5055638, 127.2484251);
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(dest);
-        markerOptions.title("아몰랑");
-
-        googleMap.addMarker(markerOptions);
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(dest));
-        googleMap.animateCamera(CameraUpdateFactory.zoomTo(16));
+    public ArrayList<ToiletItem> getToiletArrayList() {
+        return toiletItemArrayList;
     }
+
 }

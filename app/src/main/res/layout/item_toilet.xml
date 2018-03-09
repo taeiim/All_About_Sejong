@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/toilet_nameTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="화장 이름 입니다람쥐"
+        android:textColor="#000"
+        android:textSize="14dp" />
+
+    <TextView
+        android:id="@+id/toilet_distanceTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/toilet_nameTv"
+        android:layout_marginLeft="10dp"
+        android:textSize="13dp"
+        android:text="3.84km"
+        android:textColor="#6E6E6E"
+        android:layout_alignBaseline="@id/toilet_nameTv"/>
+
+    <TextView
+        android:id="@+id/toilet_addressTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="sdlkfdlfkjdslfkjdslkfjdslkfjdslkfjdlskfjdslkfj"
+        android:textColor="#585858"
+        android:layout_below="@+id/toilet_nameTv"
+        android:layout_marginTop="4dp"
+        android:textSize="13dp"/>
+</RelativeLayout>

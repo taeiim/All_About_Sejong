@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+
     <android.support.v7.widget.Toolbar
-        android:id="@+id/center_toolbar"
+        android:id="@+id/toilet_maps_toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/main_toolbar_height"
         app:contentInsetStart="0dp"
@@ -16,7 +18,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/center_backIcon"
+                android:id="@+id/toilet_maps_backIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -29,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerInParent="true"
-                android:text="공중화장실"
+                android:text="공중화장실(지도)"
                 android:textColor="@color/colorItem"
                 android:textSize="15dp" />
 
@@ -46,22 +48,10 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <LinearLayout
+    <fragment
+        android:id="@+id/toilet_googleMap"
+        class="com.google.android.gms.maps.MapFragment"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"/>
 
-        <TextView
-            android:id="@+id/intentMapToilet_textView"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:text="지도보기"
-            android:gravity="center"
-            android:textColor="#000"/>
-    </LinearLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/toilet_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 </LinearLayout>
