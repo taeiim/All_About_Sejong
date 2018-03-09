@@ -1,88 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.wajahatkarim3.easyflipview.EasyFlipView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:flipDuration="400"
-    app:flipEnabled="true"
-    app:flipOnTouch="true"
-    app:flipType="horizontal"
-    android:id="@+id/flipView">
-
-
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="190dp"
-        android:layout_margin="6dp"
-        android:visibility="gone">
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="190dp"
-            app:cardBackgroundColor="#AB33">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="동호회 명"
-                    android:textColor="#000"
-                    android:textSize="15dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="24"
-                    android:textColor="#585858"
-                    android:textSize="14dp" />
-
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
-    </LinearLayout>
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:layout_margin="6dp">
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp">
 
         <android.support.v7.widget.CardView
             android:id="@+id/club_cardview"
             android:layout_width="match_parent"
-            android:layout_height="90dp">
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="1dp"
+            app:cardElevation="5dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="16dp">
+                android:padding="18dp">
 
                 <TextView
-                    android:id="@+id/club_cardview_name"
+                    android:id="@+id/club_cardview_nameTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="동호회 명"
                     android:textColor="#000"
-                    android:textSize="15dp" />
+                    android:textSize="14dp"
+                    android:layout_toLeftOf="@+id/club_cardview_memberCntTv"
+                    android:layout_alignParentLeft="true"/>
 
                 <TextView
-                    android:id="@+id/club_cardview_content"
+                    android:id="@+id/club_cardview_contentTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/club_cardview_name"
-                    android:layout_marginTop="2dp"
+                    android:layout_below="@id/club_cardview_nameTv"
+                    android:layout_marginTop="4dp"
                     android:text="24"
                     android:textColor="#585858"
-                    android:textSize="14dp" />
+                    android:textSize="13dp"
+                    android:layout_toLeftOf="@+id/club_cardview_memberCntTv"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginRight="8dp"/>
+
+                <TextView
+                    android:id="@+id/club_cardview_memberCntTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/edge_club_item"
+                    android:text="230명"
+                    android:textSize="12dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:padding="3dp"
+                    android:layout_centerVertical="true"/>
 
             </RelativeLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>
 
-</com.wajahatkarim3.easyflipview.EasyFlipView>
+
+
+

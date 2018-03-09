@@ -17,10 +17,6 @@ public class ClubItem {
     public String cafeUrl;
     public double latitude;
     public double longitude;
-    public boolean isFlipped;
-
-    public ClubItem() {
-    }
 
     public ClubItem(String name, String tellNum, String regularMeeting, String clubType, String content, String membershipFee, String memberCnt, String businessName, String category, String cafeUrl) {
         this.name = name;

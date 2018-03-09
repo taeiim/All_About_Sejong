@@ -1,6 +1,5 @@
 package com.example.parktaeim.all_about_sejong.Fragments;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -10,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.parktaeim.all_about_sejong.Activity.ClubActivity;
 import com.example.parktaeim.all_about_sejong.Adapter.ClubRecyclerViewAdapter;
 import com.example.parktaeim.all_about_sejong.Model.ClubItem;
 import com.example.parktaeim.all_about_sejong.R;
@@ -24,7 +24,7 @@ public class HobbyFragment extends android.support.v4.app.Fragment{
 
     private RecyclerView recyclerView;
     private ClubRecyclerViewAdapter clubAdapter;
-    private ArrayList<ClubItem> clubItemArrayList = new ArrayList<>();
+    private ArrayList<ClubItem> hobbyClubArrayList = new ArrayList<>();
     private RecyclerView.LayoutManager layoutManager;
 
     public static HobbyFragment newInstance(){
@@ -48,10 +48,13 @@ public class HobbyFragment extends android.support.v4.app.Fragment{
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
+        ClubActivity clubActivity = new ClubActivity();
+        if(hobbyClubArrayList.size() == 0)  {
+            hobbyClubArrayList = clubActivity.getClubArrayList("취미");
+        }
 
-
-//        clubAdapter = new ClubRecyclerViewAdapter(clubItemArrayList);
-//        recyclerView.setAdapter(clubAdapter);
+        clubAdapter = new ClubRecyclerViewAdapter(hobbyClubArrayList);
+        recyclerView.setAdapter(clubAdapter);
 
         return view;
 
