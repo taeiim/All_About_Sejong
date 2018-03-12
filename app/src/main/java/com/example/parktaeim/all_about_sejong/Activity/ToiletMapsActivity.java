@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.example.parktaeim.all_about_sejong.R;
@@ -19,13 +20,6 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -49,6 +43,8 @@ public class ToiletMapsActivity extends AppCompatActivity implements OnMapReadyC
         ImageView backIcon = (ImageView) findViewById(R.id.toilet_maps_backIcon);
         backIcon.setOnClickListener(v -> finish());
 
+
+
     }
 
     private void setUpDataOnMap() {
@@ -66,8 +62,6 @@ public class ToiletMapsActivity extends AppCompatActivity implements OnMapReadyC
             markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_bathroom_onmap));
             googleMap.addMarker(markerOptions);
         }
-
-
     }
 
     @Override

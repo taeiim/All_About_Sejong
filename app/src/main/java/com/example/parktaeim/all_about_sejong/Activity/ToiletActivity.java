@@ -1,12 +1,20 @@
 package com.example.parktaeim.all_about_sejong.Activity;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.parktaeim.all_about_sejong.Adapter.AllCenterRecyclerViewAdapter;
@@ -34,29 +42,76 @@ public class ToiletActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private ToiletRecyclerViewAdapter adapter;
+    private ImageView backIcon;
 
     private String jsonString = null;
     ArrayList<ToiletItem> toiletItemArrayList;
     private TextView intentToiletMaps;
+
+    private double latitude;
+    private double longitude;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toilet);
 
+        backIcon = (ImageView) findViewById(R.id.toilet_backIcon);
         intentToiletMaps = (TextView) findViewById(R.id.intentMapToilet_textView);
+        backIcon.setOnClickListener(v -> finish());
         intentToiletMaps.setOnClickListener(v -> {
-            Intent intent = new Intent(ToiletActivity.this,ToiletMapsActivity.class);
-            intent.putExtra("ToiletArrayList",toiletItemArrayList);
+            Intent intent = new Intent(ToiletActivity.this, ToiletMapsActivity.class);
+            intent.putExtra("ToiletArrayList", toiletItemArrayList);
             startActivity(intent);
 //            startActivity(new Intent(ToiletActivity.this, ToiletMapsActivity.class));
 
         });
 
+        getCurrentLocation();
         getToiletData();
-//        setRecyclerView();
 
     }
+
+    private void getCurrentLocation() {
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, locationListener);
+
+
+    }
+
+    private final LocationListener locationListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(Location location) {
+            latitude = location.getLatitude();
+            longitude = location.getLongitude();
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+    };
 
     private void setRecyclerView() {
         recyclerView = (RecyclerView) findViewById(R.id.toilet_recyclerview);
@@ -144,10 +199,6 @@ public class ToiletActivity extends AppCompatActivity {
 
         Log.d("TOILET GET ARRAYLIST ==",arrayList.toString());
         return arrayList;
-    }
-
-    public ArrayList<ToiletItem> getToiletArrayList() {
-        return toiletItemArrayList;
     }
 
 }

@@ -1,13 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="90dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/gas_rankTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:layout_centerVertical="true"
+                android:textColor="#000"
+                android:textSize="17dp"
+                android:layout_marginRight="16dp"/>
+
+            <TextView
+                android:id="@+id/gas_nameTv"
+                android:layout_toRightOf="@+id/gas_rankTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주유소 이름 깔깔"
+                android:textSize="15dp"
+                android:textColor="#000"
+                android:layout_marginLeft="4dp"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/gas_addressTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주유소 주소 입니다람쥐 ㅇㄴ란이라언리아ㅓ리아ㅓㄹ이ㅏ러"
+                android:layout_below="@+id/gas_nameTv"
+                android:layout_toRightOf="@+id/gas_rankTv"
+                android:layout_toLeftOf="@+id/gas_priceTv" />
+
+            <TextView
+                android:id="@+id/gas_priceTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1500원"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="17dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"/>
+        </RelativeLayout>
+
     </android.support.v7.widget.CardView>
 
-</LinearLayout>
+</FrameLayout>

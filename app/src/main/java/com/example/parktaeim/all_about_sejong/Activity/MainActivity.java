@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         startActivity(new Intent(MainActivity.this, ToiletActivity.class));
                         break;
                     case 2:
-//                        startActivity(new Intent(MainActivity.this, GasStationActivity.class));
+                        startActivity(new Intent(MainActivity.this, GasStationActivity.class));
                         break;
                     case 3:
                         startActivity(new Intent(MainActivity.this, ClubActivity.class));

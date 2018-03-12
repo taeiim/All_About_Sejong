@@ -29,6 +29,7 @@
         <activity android:name=".Activity.ClubActivity" />
         <activity android:name=".Activity.ToiletActivity" />
         <activity android:name=".Activity.ToiletMapsActivity"/>
+        <activity android:name=".Activity.GasStationActivity"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

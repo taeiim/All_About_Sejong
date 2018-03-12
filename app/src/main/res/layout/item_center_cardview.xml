@@ -7,9 +7,11 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginBottom="10dp"
         app:cardCornerRadius="6dp"
-        app:cardElevation="0dp">
+        app:cardElevation="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,7 +21,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
-                android:padding="16dp">
+                android:padding="10dp"
+                android:gravity="center_vertical">
 
                 <TextView
                     android:id="@+id/center_nameTv"
@@ -27,8 +30,8 @@
                     android:layout_height="wrap_content"
                     android:text="태임 어린이집"
                     android:textColor="#000"
-                    android:textSize="16dp"
-                    android:layout_marginLeft="5dp"/>
+                    android:textSize="15dp"
+                    android:layout_marginLeft="5dp" />
 
                 <View
                     android:id="@+id/devide"
@@ -47,7 +50,8 @@
                     android:text="세종특별자치시  갈매로 477 정부세종청사 기획재정부동 1층"
                     android:layout_marginLeft="8dp"
                     android:lineSpacingExtra="1dp"
-                    android:maxLines="2"/>
+                    android:maxLines="2"
+                    android:textSize="13dp"/>
 
             </RelativeLayout>
 
