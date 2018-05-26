@@ -1,7 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_toolbar_height">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/center_toolbar"
+            app:contentInsetStart="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_toolbar_height"
+            android:background="#FFF">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/center_backIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:src="@drawable/icon_back" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerInParent="true"
+                    android:text="주유소"
+                    android:textColor="@color/colorItem"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:id="@+id/icon_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/ic_action_action_search"
+                    android:tint="@color/colorPrimaryDark" />
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+        <com.miguelcatalan.materialsearchview.MaterialSearchView
+            android:id="@+id/center_searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="주유소명, 주소로 검색가능" />
+
+    </FrameLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/gas_recyclerview"

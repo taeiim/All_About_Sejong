@@ -163,6 +163,7 @@ public class ToiletActivity extends AppCompatActivity {
 
                 } catch (IOException e) {
                     e.printStackTrace();
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

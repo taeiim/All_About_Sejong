@@ -22,9 +22,6 @@ public class XmlGasHandler extends DefaultHandler {
     private int rank= 1;
 
     public ArrayList<GasStationItem> getLowPriceArrayList() {
-        Log.d("LowPriceArrayListSize==", String.valueOf(gasStationItemArrayList));
-        Log.d("=========",gasStationItemArrayList.get(0).getPrice());
-
         return gasStationItemArrayList;
     }
 

@@ -1,16 +1,19 @@
 package com.example.parktaeim.all_about_sejong.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.example.parktaeim.all_about_sejong.Adapter.GasStationLowPriceAdapter;
 import com.example.parktaeim.all_about_sejong.GeoPoint;
 import com.example.parktaeim.all_about_sejong.GeoTrans;
 import com.example.parktaeim.all_about_sejong.Model.GasStationItem;
 import com.example.parktaeim.all_about_sejong.R;
+import com.example.parktaeim.all_about_sejong.RecyclerViewClickListener;
 import com.example.parktaeim.all_about_sejong.XmlGasHandler;
 
 import org.xml.sax.InputSource;
@@ -37,7 +40,40 @@ public class GasStationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gas_station);
 
+        recyclerView = (RecyclerView) findViewById(R.id.gas_recyclerview);
+
+
+        GeoPoint in_pt = new GeoPoint(127., 38.);
+        System.out.println("geo in : xGeo="  + in_pt.getX() + ", yGeo=" + in_pt.getY());
+        GeoPoint tm_pt = GeoTrans.convert(GeoTrans.GEO, GeoTrans.TM, in_pt);
+        System.out.println("tm : xTM=" + tm_pt.getX() + ", yTM=" + tm_pt.getY());
+        GeoPoint katec_pt = GeoTrans.convert(GeoTrans.TM, GeoTrans.KATEC, tm_pt);
+        System.out.println("katec : xKATEC=" + katec_pt.getX() + ", yKATEC=" + katec_pt.getY());
+        GeoPoint out_pt = GeoTrans.convert(GeoTrans.KATEC, GeoTrans.GEO, katec_pt);
+        System.out.println("geo out : xGeo=" + out_pt.getX() + ", yGeo=" + out_pt.getY());
+        GeoPoint in2_pt = new GeoPoint(128., 38.);
+        System.out.println("geo distance between (127,38) and (128,38) =" + GeoTrans.getDistancebyGeo(in_pt, in2_pt) + "km");
+
+
+
         parsingLowestPriceArrayList();
+        setUpIntent();
+    }
+
+    private void setUpIntent() {
+        recyclerView.addOnItemTouchListener(new RecyclerViewClickListener(getApplicationContext(), recyclerView, new RecyclerViewClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(GasStationActivity.this,GasStationDetailActivity.class);
+                intent.putExtra("gasStationID",gasStationItemArrayList.get(position).getId());
+                startActivity(intent);
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+
+            }
+        }));
     }
 
 
@@ -79,7 +115,6 @@ public class GasStationActivity extends AppCompatActivity {
     }
 
     private void setUpRecyclerView() {
-        recyclerView = (RecyclerView) findViewById(R.id.gas_recyclerview);
         layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
 

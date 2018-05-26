@@ -30,6 +30,8 @@ public class ToiletMapsActivity extends AppCompatActivity implements OnMapReadyC
     private GoogleMap googleMap;
     ArrayList<ToiletItem> toiletItemArrayList;
 
+    ImageView currentLocationIcon;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,10 +42,10 @@ public class ToiletMapsActivity extends AppCompatActivity implements OnMapReadyC
         mapFragment.getMapAsync(this);
 
         MapsInitializer.initialize(getApplicationContext());
+
+        currentLocationIcon = (ImageView) findViewById(R.id.icon_current_location);
         ImageView backIcon = (ImageView) findViewById(R.id.toilet_maps_backIcon);
         backIcon.setOnClickListener(v -> finish());
-
-
 
     }
 
@@ -78,6 +80,8 @@ public class ToiletMapsActivity extends AppCompatActivity implements OnMapReadyC
         googleMap.animateCamera(CameraUpdateFactory.zoomTo(16));
 
         setUpDataOnMap();
+
+        currentLocationIcon.setOnClickListener(v-> googleMap.moveCamera(CameraUpdateFactory.newLatLng(dest)));
 
     }
 }

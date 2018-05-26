@@ -7,7 +7,7 @@
     <dimen name="main_cardview_corner">6dp</dimen>
     <dimen name="main_cardview_heignt">140dp</dimen>
     <dimen name="main_cardview_marginBottom">1dp</dimen>
-    <dimen name="centerDetail_cardview_height"> 70dp </dimen>
+    <dimen name="centerDetail_cardview_height"> 65dp </dimen>
     <dimen name="centerDetail_cardview_marginBottom"> 8dp </dimen>
     <dimen name="centerDetail_cardview_corner"> 5dp </dimen>
     <dimen name="centerDetail_cardview_elevation"> 1dp </dimen>

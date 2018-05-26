@@ -42,6 +42,16 @@ public class AllCenterRecyclerViewAdapter extends RecyclerView.Adapter<AllCenter
         }else{
             holder.centerBusImageView.setImageResource(R.drawable.icon_nobus);
         }
+
+
+        if(centerItems.get(position).getType().equals("민간")){
+            holder.centerTypeImageView.setImageResource(R.drawable.icon_center_type_civilian);
+        }else if(centerItems.get(position).getType().equals("가정")){
+            holder.centerTypeImageView.setImageResource(R.drawable.icon_center_type_home);
+
+        }else if(centerItems.get(position).getType().equals("직장")){
+            holder.centerTypeImageView.setImageResource(R.drawable.icon_center_type_company);
+        }
     }
 
     @Override

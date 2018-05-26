@@ -48,6 +48,8 @@ public class DayCareCenterDetailActivity extends AppCompatActivity implements On
     private TextView playgroundCountTv;
 
     private ImageView backIcon;
+    private ImageView isBusImgView;
+    private ImageView centerTypeImgView;
     private LinearLayout callLayout;
     private CardView callCardView;
 
@@ -78,6 +80,9 @@ public class DayCareCenterDetailActivity extends AppCompatActivity implements On
         playgroundCountTv = (TextView) findViewById(R.id.playgroundCountTv);
 
         backIcon = (ImageView) findViewById(R.id.centerDetail_backIcon);
+        isBusImgView = (ImageView) findViewById(R.id.centerDetail_isBus_ImageView);
+        centerTypeImgView = (ImageView) findViewById(R.id.centerDetail_type_img);
+
         callCardView = (CardView) findViewById(R.id.centerDetail_callCardView);
         callLayout = (LinearLayout) findViewById(R.id.callLayout);
 
@@ -98,6 +103,7 @@ public class DayCareCenterDetailActivity extends AppCompatActivity implements On
     }
 
     private void getLatLon() {
+        System.out.println("GET Lan Lon 함수");
         String clientId = "eHm6juoXIARjUBibf0n1";//애플리케이션 클라이언트 아이디값";
         String clientSecret = "h7O6vSoxwj";//애플리케이션 클라이언트 시크릿값";
         new Thread(){
@@ -106,8 +112,11 @@ public class DayCareCenterDetailActivity extends AppCompatActivity implements On
                 super.run();
 
                 try {
+                    System.out.println("GET Lan Lon 함수 TRY 문 안에 들어옴 ");
+
                     // Naver API (주소 -> 좌표)
                     String addr = URLEncoder.encode(address, "UTF-8");
+                    System.out.println("ADDR+++!!!=="+addr +address);
                     String apiURL = "https://openapi.naver.com/v1/map/geocode?query=" + addr;
                     URL url = new URL(apiURL);
                     HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -144,6 +153,7 @@ public class DayCareCenterDetailActivity extends AppCompatActivity implements On
                     setUpMap(lat,lon);
 
                 } catch (Exception e) {
+                    System.out.println("ERROR!!!! 주소변환 에러!!!");
                     System.out.println(e);
                 }
 
@@ -194,11 +204,19 @@ public class DayCareCenterDetailActivity extends AppCompatActivity implements On
 
         if(isBus){
             isBusTv.setText("통학버스 운영");
+            isBusImgView.setImageResource(R.drawable.icon_school_bus);
         }else{
             isBusTv.setText("통학버스 운영안함");
+            isBusImgView.setImageResource(R.drawable.icon_nobus);
         }
 
-
+        if(type.equals("민간")){
+            centerTypeImgView.setImageResource(R.drawable.icon_center_type_civilian);
+        }else if(type.equals("가정")){
+            centerTypeImgView.setImageResource(R.drawable.icon_center_type_home);
+        }else if(type.equals("직장")){
+            centerTypeImgView.setImageResource(R.drawable.icon_center_type_company);
+        }
     }
 
     @Override

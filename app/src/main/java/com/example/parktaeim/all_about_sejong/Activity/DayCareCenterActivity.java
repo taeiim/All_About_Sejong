@@ -170,6 +170,7 @@ public class  DayCareCenterActivity extends AppCompatActivity{
                             adapter = new AllCenterRecyclerViewAdapter(dayCareCenterItemArrayList);
                             recyclerView.setAdapter(adapter);
 
+                            searchIcon.setVisibility(View.VISIBLE);
                             stopAnim();
                         }
                     });

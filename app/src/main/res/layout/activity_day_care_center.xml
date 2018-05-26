@@ -60,7 +60,8 @@
                         android:layout_centerVertical="true"
                         android:layout_marginRight="8dp"
                         android:src="@drawable/ic_action_action_search"
-                        android:tint="@color/colorPrimaryDark" />
+                        android:tint="@color/colorPrimaryDark"
+                        android:visibility="gone"/>
                 </RelativeLayout>
 
             </android.support.v7.widget.Toolbar>
