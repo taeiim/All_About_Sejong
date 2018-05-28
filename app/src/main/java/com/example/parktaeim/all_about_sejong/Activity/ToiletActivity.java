@@ -1,29 +1,21 @@
 package com.example.parktaeim.all_about_sejong.Activity;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.parktaeim.all_about_sejong.Adapter.AllCenterRecyclerViewAdapter;
 import com.example.parktaeim.all_about_sejong.Adapter.ToiletRecyclerViewAdapter;
 import com.example.parktaeim.all_about_sejong.Model.ToiletItem;
 import com.example.parktaeim.all_about_sejong.R;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,10 +35,13 @@ public class ToiletActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private ToiletRecyclerViewAdapter adapter;
     private ImageView backIcon;
+    private ImageView searchIcon;
 
     private String jsonString = null;
     ArrayList<ToiletItem> toiletItemArrayList;
     private TextView intentToiletMaps;
+    private MaterialSearchView searchView;
+    private AVLoadingIndicatorView avi;
 
     private double latitude;
     private double longitude;
@@ -55,6 +50,7 @@ public class ToiletActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toilet);
+
 
         backIcon = (ImageView) findViewById(R.id.toilet_backIcon);
         intentToiletMaps = (TextView) findViewById(R.id.intentMapToilet_textView);
@@ -67,53 +63,44 @@ public class ToiletActivity extends AppCompatActivity {
 
         });
 
-        getCurrentLocation();
+        searchView = (MaterialSearchView) findViewById(R.id.toilet_searchView);
+        searchIcon = (ImageView) findViewById(R.id.toilet_icon_search);
+        avi = (AVLoadingIndicatorView) findViewById(R.id.toilet_avi);
+
+        startAvi();
         getToiletData();
-
+        setUpsearchView();
     }
 
-    private void getCurrentLocation() {
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
+    private void setUpsearchView(){
+        searchIcon.setOnClickListener(v->searchView.showSearch());
 
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, locationListener);
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                adapter.filter(query);
+                return true;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.filter(newText);
+                return true;
+            }
+        });
 
+        searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+            @Override
+            public void onSearchViewShown() {
+            }
+
+            @Override
+            public void onSearchViewClosed() {
+            }
+        });
     }
 
-    private final LocationListener locationListener = new LocationListener() {
-        @Override
-        public void onLocationChanged(Location location) {
-            latitude = location.getLatitude();
-            longitude = location.getLongitude();
-        }
-
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-
-        }
-
-        @Override
-        public void onProviderEnabled(String provider) {
-
-        }
-
-        @Override
-        public void onProviderDisabled(String provider) {
-
-        }
-    };
-
-    private void setRecyclerView() {
+    private void setUpRecyclerView() {
         recyclerView = (RecyclerView) findViewById(R.id.toilet_recyclerview);
         layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -157,7 +144,9 @@ public class ToiletActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            setRecyclerView();
+                            setUpRecyclerView();
+                            stopAvi();
+                            searchIcon.setVisibility(View.VISIBLE);
                         }
                     });
 
@@ -183,11 +172,11 @@ public class ToiletActivity extends AppCompatActivity {
                 double latitude = jsonObject.getDouble("위도");
                 double longitude = jsonObject.getDouble("경도");
 
-                Log.d("name length",String.valueOf(name));
-                Log.d("tellnum length",String.valueOf(tellNum));
-                Log.d("address length",String.valueOf(address));
-                Log.d("opentime length",String.valueOf(openTime));
-                Log.d("latitude length",String.valueOf(String.valueOf(latitude)));
+//                Log.d("name length",String.valueOf(name));
+//                Log.d("tellnum length",String.valueOf(tellNum));
+//                Log.d("address length",String.valueOf(address));
+//                Log.d("opentime length",String.valueOf(openTime));
+//                Log.d("latitude length",String.valueOf(String.valueOf(latitude)));
 
                 if(name.length() != 0 && tellNum.length()!=0 && address.length() != 0 && openTime.length() !=0 && String.valueOf(latitude).length() !=0 ){
                     arrayList.add(new ToiletItem(openTime,address,latitude,longitude,tellNum,name));
@@ -202,4 +191,12 @@ public class ToiletActivity extends AppCompatActivity {
         return arrayList;
     }
 
+
+    void startAvi(){
+        avi.show();
+    }
+
+    void stopAvi(){
+        avi.hide();
+    }
 }

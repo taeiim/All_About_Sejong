@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.parktaeim.all_about_sejong.Model.DayCareCenterItem;
 import com.example.parktaeim.all_about_sejong.Model.ToiletItem;
 import com.example.parktaeim.all_about_sejong.R;
 
@@ -17,9 +18,11 @@ import java.util.ArrayList;
 
 public class ToiletRecyclerViewAdapter extends RecyclerView.Adapter<ToiletRecyclerViewAdapter.ViewHolder> {
     private ArrayList<ToiletItem> toiletItems = new ArrayList<>();
+    private ArrayList<ToiletItem> copyItems = new ArrayList<>();
 
     public ToiletRecyclerViewAdapter(ArrayList<ToiletItem> toiletItems) {
         this.toiletItems = toiletItems;
+        copyItems.addAll(toiletItems);
     }
 
     @Override
@@ -51,5 +54,21 @@ public class ToiletRecyclerViewAdapter extends RecyclerView.Adapter<ToiletRecycl
             distanceTv = (TextView) itemView.findViewById(R.id.toilet_distanceTv);
             addressTv = (TextView) itemView.findViewById(R.id.toilet_addressTv);
         }
+    }
+
+    public void filter(String text) {
+        toiletItems.clear();
+        if(text.isEmpty()){
+            toiletItems.addAll(copyItems);
+
+        } else{
+            text = text.toLowerCase();
+            for(ToiletItem item: copyItems){
+                if(item.getToilet_name().toLowerCase().contains(text) || item.getToilet_address().toLowerCase().contains(text)){
+                    toiletItems.add(item);
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 }
