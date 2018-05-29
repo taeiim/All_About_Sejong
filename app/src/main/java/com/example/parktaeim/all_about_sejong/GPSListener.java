@@ -12,14 +12,11 @@ import android.util.Log;
 public class GPSListener implements LocationListener {
     @Override
     public void onLocationChanged(Location location) {
-        Log.d("GPSListener","IN!!");
-
         Double latitude = location.getLatitude();
         Double longitude = location.getLongitude();
         Log.d("latitude==" + latitude, "  Longitude==" + longitude);
 
         location.getAccuracy();
-
     }
 
     @Override

@@ -83,7 +83,7 @@ public class AllCenterRecyclerViewAdapter extends RecyclerView.Adapter<AllCenter
         } else{
             text = text.toLowerCase();
             for(DayCareCenterItem item: itemsCopy){
-                if(item.name.toLowerCase().contains(text) || item.address.toLowerCase().contains(text) || item.tellNum.contains(text)){
+                if(item.name.toLowerCase().contains(text) || item.address.toLowerCase().contains(text)){
                     centerItems.add(item);
                 }
             }

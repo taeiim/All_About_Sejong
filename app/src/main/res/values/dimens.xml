@@ -15,5 +15,4 @@
     <dimen name="centerDetail_cardview_iconSize"> 35dp </dimen>
     <dimen name="centerDetail_cardview_bigTextSize"> 18dp </dimen>
 
-
 </resources>
