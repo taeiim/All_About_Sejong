@@ -8,6 +8,8 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.parktaeim.all_about_sejong.Adapter.AllCenterRecyclerViewAdapter;
@@ -16,6 +18,7 @@ import com.example.parktaeim.all_about_sejong.Model.DayCareCenterItem;
 import com.example.parktaeim.all_about_sejong.Model.GasStationDetailItem;
 import com.example.parktaeim.all_about_sejong.R;
 import com.example.parktaeim.all_about_sejong.XmlGasHandler;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,7 +30,11 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -38,15 +45,17 @@ import javax.xml.parsers.SAXParserFactory;
 
 public class GasStationDetailActivity extends AppCompatActivity {
     ArrayList<GasStationDetailItem> gasStationDetailItems = new ArrayList<>();
+    private AVLoadingIndicatorView avi;
 
     private String brand;
     private String name;
     private String address_new;
     private String tellNum;
     private String type;
-    private boolean isMaint;
-    private boolean isCarWash;
-    private boolean isConvenience;
+    private boolean isMaint;  //경정비 시설 존재 여부
+    private boolean isCarWash;  //세차장 존재 여부
+    private boolean isConvenience;  //편의점 존재 여부
+    private boolean isKPETRO; // 품질인증주유소 여부
     private double latitude;
     private double longitude;
 
@@ -54,31 +63,39 @@ public class GasStationDetailActivity extends AppCompatActivity {
     private String B027;
     private int B027_price;
     private String B027_date;
+    private String B027_time;
 
     //경유
     private String D047;
     private int D047_price;
     private String D047_date;
+    private String D047_time;
 
     //고급휘발유
     private String B034;
     private int B034_price;
     private String B034_date;
+    private String B034_time;
 
     //실내등유
     private String C004;
     private int C004_price;
     private String C004_date;
+    private String C004_time;
 
     //자동차부탄
     private String K015;
     private int K015_price;
     private String K015_date;
+    private String K015_time;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gas_station_detail);
+
+        avi = (AVLoadingIndicatorView) findViewById(R.id.gasStationDetail_avi);
+        avi.show();
 
         getGasStationInfo();
     }
@@ -125,17 +142,21 @@ public class GasStationDetailActivity extends AppCompatActivity {
                     longitude = jsonObject.getDouble("GIS_X_COOR");
                     JSONArray oilPriceArray = jsonObject.getJSONArray("OIL_PRICE");
 
-
                     setUpDataString(jsonObject, oilPriceArray);
 
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+
                             TextView nameTv = (TextView) findViewById(R.id.gasDetail_nameTv);
-                            TextView typeTv = (TextView) findViewById(R.id.gasDetail_typeTv);
+                            TextView brandTv = (TextView) findViewById(R.id.gasDetail_brandTv);
 
                             nameTv.setText(name);
-                            typeTv.setText(type);
+                            brandTv.setText(brand);
+
+                            setUpTextOilPrice();
+
+                            avi.hide();
                         }
                     });
 
@@ -156,6 +177,53 @@ public class GasStationDetailActivity extends AppCompatActivity {
 
     }
 
+    private void setUpTextOilPrice() {
+        TextView B027_tradeTv = (TextView) findViewById(R.id.B027_standTv);
+        TextView B027_priceTv = (TextView) findViewById(R.id.B027_priceTv);
+        TextView D047_tradeTv = (TextView) findViewById(R.id.D047_standTv);
+        TextView D047_priceTv = (TextView) findViewById(R.id.D047_priceTv);
+        TextView B034_tradeTv = (TextView) findViewById(R.id.B034_standTv);
+        TextView B034_priceTv = (TextView) findViewById(R.id.B034_priceTv);
+        TextView C004_tradeTv = (TextView) findViewById(R.id.C004_standTv);
+        TextView C004_priceTv = (TextView) findViewById(R.id.C004_priceTv);
+        TextView K015_tradeTv = (TextView) findViewById(R.id.K015_standTv);
+        TextView K015_priceTv = (TextView) findViewById(R.id.K015_priceTv);
+
+        RelativeLayout B027Layout = (RelativeLayout) findViewById(R.id.B027Layout);
+        RelativeLayout D047Layout = (RelativeLayout) findViewById(R.id.D047Layout);
+        RelativeLayout B034Layout = (RelativeLayout) findViewById(R.id.B034Layout);
+        RelativeLayout C004Layout = (RelativeLayout) findViewById(R.id.C004Layout);
+        RelativeLayout K015Layout = (RelativeLayout) findViewById(R.id.K015Layout);
+
+        if(B027 != null && B027.length() != 0) {
+            B027Layout.setVisibility(View.VISIBLE);
+            B027_priceTv.setText(String.valueOf(B027_price)+"원");
+            B027_tradeTv.setText(changeDateFormat(B027_date + B027_time));
+        }
+        if(D047 != null && D047.length() != 0) {
+            D047Layout.setVisibility(View.VISIBLE);
+            D047_priceTv.setText(String.valueOf(D047_price)+"원");
+            D047_tradeTv.setText(changeDateFormat(D047_date + D047_time));
+        }
+        if(B034 != null && B034.length() != 0) {
+            B034Layout.setVisibility(View.VISIBLE);
+            B034_priceTv.setText(String.valueOf(B034_price)+"원");
+            B034_tradeTv.setText(changeDateFormat(B034_date + B034_time));
+        }
+        if(C004 != null && C004.length() != 0) {
+            C004Layout.setVisibility(View.VISIBLE);
+            C004_priceTv.setText(String.valueOf(C004_price)+"원");
+            C004_tradeTv.setText(changeDateFormat(C004_date + C004_time));
+        }
+        if(K015 != null && K015.length() != 0) {
+            K015Layout.setVisibility(View.VISIBLE);
+            K015_priceTv.setText(String.valueOf(K015_price)+"원");
+            K015_tradeTv.setText(changeDateFormat(K015_date + K015_time));
+        }
+
+    }
+
+
     private void setUpDataString(JSONObject jsonObject, JSONArray oilPriceArray) {
         try {
             if (jsonObject.getString("MAINT_YN").equals("Y")) {
@@ -170,34 +238,41 @@ public class GasStationDetailActivity extends AppCompatActivity {
                 isConvenience = true;
             } else isConvenience = false;
 
+            if (jsonObject.getString("KPETRO_YN").equals("Y")) {
+                isConvenience = true;
+            } else isConvenience = false;
 
-            for (int k = 0; k < oilPriceArray.length(); k++) {
-                JSONObject oilPriceObject = (JSONObject) oilPriceArray.get(k);
+            for (int i = 0; i < oilPriceArray.length(); i++) {
+                JSONObject oilPriceObject = (JSONObject) oilPriceArray.get(i);
                 if (oilPriceObject.getString("PRODCD").equals("B027")) {
                     B027 = "휘발유";
                     B027_price = oilPriceObject.getInt("PRICE");
                     B027_date = oilPriceObject.getString("TRADE_DT");
+                    B027_time = oilPriceObject.getString("TRADE_TM");
 
                 } else if (oilPriceObject.getString("PRODCD").equals("D047")) {
                     D047 = "경유";
                     D047_price = oilPriceObject.getInt("PRICE");
                     D047_date = oilPriceObject.getString("TRADE_DT");
+                    D047_time = oilPriceObject.getString("TRADE_TM");
 
                 } else if (oilPriceObject.getString("PRODCD").equals("B034")) {
                     B034 = "고급휘발유";
                     B034_price = oilPriceObject.getInt("PRICE");
                     B034_date = oilPriceObject.getString("TRADE_DT");
+                    B034_time = oilPriceObject.getString("TRADE_TM");
 
                 } else if (oilPriceObject.getString("PRODCD").equals("C004")) {
                     C004 = "실내등유";
                     C004_price = oilPriceObject.getInt("PRICE");
                     C004_date = oilPriceObject.getString("TRADE_DT");
+                    C004_time = oilPriceObject.getString("TRADE_TM");
 
                 } else if (oilPriceObject.getString("PRODCD").equals("K015")) {
                     K015 = "자동차부탄";
                     K015_price = oilPriceObject.getInt("PRICE");
                     K015_date = oilPriceObject.getString("TRADE_DT");
-
+                    K015_time = oilPriceObject.getString("TRADE_TM");
                 }
             }
 
@@ -220,5 +295,19 @@ public class GasStationDetailActivity extends AppCompatActivity {
         else if (type.equals("Y")) type = "자동차 충전소";
         else if (type.equals("C")) type = "주유소/충전소 겸업";
 
+    }
+
+    private String changeDateFormat(String beforeDate){
+        SimpleDateFormat beforeDateFormat = new SimpleDateFormat("yyyyMMddHHmmss",Locale.KOREA);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd. HH:mm",Locale.KOREA);
+        String resultStr = "";
+
+        try {
+            resultStr = "(기준: "+simpleDateFormat.format(beforeDateFormat.parse(beforeDate))+")";
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return resultStr;
     }
 }

@@ -51,7 +51,6 @@ public class ToiletActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toilet);
 
-
         backIcon = (ImageView) findViewById(R.id.toilet_backIcon);
         intentToiletMaps = (TextView) findViewById(R.id.intentMapToilet_textView);
         backIcon.setOnClickListener(v -> finish());

@@ -15,6 +15,7 @@ import com.example.parktaeim.all_about_sejong.Model.GasStationItem;
 import com.example.parktaeim.all_about_sejong.R;
 import com.example.parktaeim.all_about_sejong.RecyclerViewClickListener;
 import com.example.parktaeim.all_about_sejong.XmlGasHandler;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
@@ -34,6 +35,7 @@ public class GasStationActivity extends AppCompatActivity {
     private GasStationLowPriceAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     ArrayList<GasStationItem> gasStationItemArrayList = new ArrayList<>();
+    private AVLoadingIndicatorView avi;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,7 +43,8 @@ public class GasStationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gas_station);
 
         recyclerView = (RecyclerView) findViewById(R.id.gas_recyclerview);
-
+        avi = (AVLoadingIndicatorView) findViewById(R.id.gasStation_avi);
+        avi.show();
 
         GeoPoint in_pt = new GeoPoint(127., 38.);
         System.out.println("geo in : xGeo="  + in_pt.getX() + ", yGeo=" + in_pt.getY());
@@ -53,7 +56,6 @@ public class GasStationActivity extends AppCompatActivity {
         System.out.println("geo out : xGeo=" + out_pt.getX() + ", yGeo=" + out_pt.getY());
         GeoPoint in2_pt = new GeoPoint(128., 38.);
         System.out.println("geo distance between (127,38) and (128,38) =" + GeoTrans.getDistancebyGeo(in_pt, in2_pt) + "km");
-
 
 
         parsingLowestPriceArrayList();
@@ -107,6 +109,7 @@ public class GasStationActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         setUpRecyclerView();
+                        avi.hide();
                     }
                 });
             }

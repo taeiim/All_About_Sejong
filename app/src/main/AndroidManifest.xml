@@ -32,6 +32,7 @@
         <activity android:name=".Activity.ToiletMapsActivity"/>
         <activity android:name=".Activity.GasStationActivity"/>
         <activity android:name=".Activity.GasStationDetailActivity"/>
+        <activity android:name=".Activity.InfoAppActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

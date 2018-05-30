@@ -9,6 +9,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/gasStationDetail_avi"
+            style="@style/AVLoadingIndicatorView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:indicatorColor="@color/colorPrimaryDark"
+            app:indicatorName="PacmanIndicator"
+            android:elevation="50dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,7 +39,7 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/gasDetail_typeTv"
+                android:id="@+id/gasDetail_brandTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -51,63 +60,92 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:minHeight="150dp"
-                app:cardCornerRadius="10dp">
+                app:cardCornerRadius="10dp"
+                android:padding="8dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center">
+                    android:layout_gravity="center"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp">
 
                     <RelativeLayout
                         android:id="@+id/B027Layout"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:padding="8dp">
+                        android:layout_height="50dp"
+                        android:padding="8dp"
+                        android:visibility="gone">
 
                         <TextView
+                            android:id="@+id/tv1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="16dp"
                             android:text="휘발유"
+                            android:textSize="@dimen/gasDetail_textSize"
                             android:textColor="#000" />
 
                         <TextView
+                            android:id="@+id/B027_standTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/tv1"
+                            android:textSize="@dimen/gasDetail_textSize_verySmall"
+                            android:layout_alignBaseline="@+id/tv1"
+                            android:layout_marginLeft="8dp"/>
+
+                        <TextView
+                            android:id="@+id/B027_priceTv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="16dp"
-                            android:text="1920원"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textSize="18dp" />
+                            android:textSize="@dimen/gasDetail_textSize" />
 
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:id="@+id/D047Layout"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="50dp"
                         android:padding="8dp"
-                        android:layout_below="@+id/B027Layout">
+                        android:layout_below="@+id/B027Layout"
+                        android:visibility="gone">
 
                         <TextView
+                            android:id="@+id/tv2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="16dp"
                             android:text="경유"
-                            android:textColor="#000" />
+                            android:textColor="#000"
+                            android:textSize="@dimen/gasDetail_textSize"/>
 
                         <TextView
+                            android:id="@+id/D047_standTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/tv2"
+                            android:textSize="@dimen/gasDetail_textSize_verySmall"
+                            android:layout_alignBaseline="@+id/tv2"
+                            android:layout_marginLeft="8dp"/>
+
+                        <TextView
+                            android:id="@+id/D047_priceTv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="16dp"
-                            android:text="1920원"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textSize="18dp" />
+                            android:textSize="@dimen/gasDetail_textSize" />
 
                     </RelativeLayout>
 
@@ -120,22 +158,33 @@
                         android:visibility="gone">
 
                         <TextView
+                            android:id="@+id/tv3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="16dp"
                             android:text="고급휘발유"
+                            android:textSize="@dimen/gasDetail_textSize"
                             android:textColor="#000" />
 
                         <TextView
+                            android:id="@+id/B034_standTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/tv3"
+                            android:textSize="@dimen/gasDetail_textSize_verySmall"
+                            android:layout_alignBaseline="@+id/tv3"
+                            android:layout_marginLeft="8dp"/>
+
+                        <TextView
+                            android:id="@+id/B034_priceTv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="16dp"
-                            android:text="1920원"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textSize="18dp" />
+                            android:textSize="@dimen/gasDetail_textSize" />
 
                     </RelativeLayout>
 
@@ -148,22 +197,33 @@
                         android:visibility="gone">
 
                         <TextView
+                            android:id="@+id/tv4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="16dp"
                             android:text="실내등유"
-                            android:textColor="#000" />
+                            android:textColor="#000"
+                            android:textSize="@dimen/gasDetail_textSize"/>
 
                         <TextView
+                            android:id="@+id/C004_standTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/tv4"
+                            android:textSize="@dimen/gasDetail_textSize_verySmall"
+                            android:layout_alignBaseline="@+id/tv4"
+                            android:layout_marginLeft="8dp"/>
+
+                        <TextView
+                            android:id="@+id/C004_priceTv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="16dp"
-                            android:text="1920원"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textSize="18dp" />
+                            android:textSize="@dimen/gasDetail_textSize" />
 
                     </RelativeLayout>
 
@@ -176,22 +236,33 @@
                         android:visibility="gone">
 
                         <TextView
+                            android:id="@+id/tv5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="16dp"
                             android:text="자동차부탄"
-                            android:textColor="#000" />
+                            android:textColor="#000"
+                            android:textSize="@dimen/gasDetail_textSize"/>
 
                         <TextView
+                            android:id="@+id/K015_standTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/tv5"
+                            android:textSize="@dimen/gasDetail_textSize_verySmall"
+                            android:layout_alignBaseline="@+id/tv5"
+                            android:layout_marginLeft="8dp"/>
+
+                        <TextView
+                            android:id="@+id/K015_priceTv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="16dp"
-                            android:text="1920원"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textSize="18dp" />
+                            android:textSize="@dimen/gasDetail_textSize" />
 
                     </RelativeLayout>
 
