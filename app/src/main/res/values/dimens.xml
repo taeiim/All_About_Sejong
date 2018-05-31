@@ -17,5 +17,8 @@
 
     <dimen name="gasDetail_textSize">16dp</dimen>
     <dimen name="gasDetail_textSize_verySmall">10dp</dimen>
+    <dimen name="gasDetail_viewHeight"> 50dp </dimen>
+    <dimen name="gasDetail_viewWidth"> 1dp </dimen>
+    <dimen name="gasDetail_infoTextSize">14dp</dimen>
 
 </resources>

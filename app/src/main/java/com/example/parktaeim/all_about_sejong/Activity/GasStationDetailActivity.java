@@ -1,6 +1,11 @@
 package com.example.parktaeim.all_about_sejong.Activity;
 
+import android.app.FragmentManager;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +14,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -18,6 +25,12 @@ import com.example.parktaeim.all_about_sejong.Model.DayCareCenterItem;
 import com.example.parktaeim.all_about_sejong.Model.GasStationDetailItem;
 import com.example.parktaeim.all_about_sejong.R;
 import com.example.parktaeim.all_about_sejong.XmlGasHandler;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.json.JSONArray;
@@ -34,6 +47,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.xml.parsers.SAXParser;
@@ -43,9 +57,11 @@ import javax.xml.parsers.SAXParserFactory;
  * Created by parktaeim on 2018. 3. 17..
  */
 
-public class GasStationDetailActivity extends AppCompatActivity {
+public class GasStationDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
     ArrayList<GasStationDetailItem> gasStationDetailItems = new ArrayList<>();
     private AVLoadingIndicatorView avi;
+    private GoogleMap googleMap;
+    private ImageView callIcon;
 
     private String brand;
     private String name;
@@ -97,6 +113,14 @@ public class GasStationDetailActivity extends AppCompatActivity {
         avi = (AVLoadingIndicatorView) findViewById(R.id.gasStationDetail_avi);
         avi.show();
 
+        FragmentManager fragmentManager = getFragmentManager();
+        MapFragment mapFragment = (MapFragment) fragmentManager.findFragmentById(R.id.gasDetail_googleMap);
+        mapFragment.getMapAsync(this);
+
+        callIcon = (ImageView) findViewById(R.id.gasDetail_callIcon);
+        ImageView backIcon = (ImageView) findViewById(R.id.gasDetail_backIcon);
+        backIcon.setOnClickListener(v -> finish());
+
         getGasStationInfo();
     }
 
@@ -147,15 +171,27 @@ public class GasStationDetailActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-
                             TextView nameTv = (TextView) findViewById(R.id.gasDetail_nameTv);
                             TextView brandTv = (TextView) findViewById(R.id.gasDetail_brandTv);
+                            TextView typeTv = (TextView) findViewById(R.id.gasDetail_typeTv);
+                            TextView tellNumTv = (TextView) findViewById(R.id.gasDetail_tellNumTv);
+                            TextView addressTv = (TextView) findViewById(R.id.gasDetail_addressTv);
 
                             nameTv.setText(name);
                             brandTv.setText(brand);
+                            typeTv.setText(type);
+                            tellNumTv.setText(tellNum);
+                            addressTv.setText(address_new);
+
+                            callIcon.setOnClickListener(v -> {
+                                startActivity(new Intent("android.intent.action.DIAL", Uri.parse("tel:" + tellNum)));
+                            });
 
                             setUpTextOilPrice();
+                            changeAddressToLatLon();
 
+                            LinearLayout contentLayout = (LinearLayout) findViewById(R.id.gasDetail_contentLayout);
+                            contentLayout.setVisibility(View.VISIBLE);
                             avi.hide();
                         }
                     });
@@ -177,6 +213,7 @@ public class GasStationDetailActivity extends AppCompatActivity {
 
     }
 
+
     private void setUpTextOilPrice() {
         TextView B027_tradeTv = (TextView) findViewById(R.id.B027_standTv);
         TextView B027_priceTv = (TextView) findViewById(R.id.B027_priceTv);
@@ -195,29 +232,29 @@ public class GasStationDetailActivity extends AppCompatActivity {
         RelativeLayout C004Layout = (RelativeLayout) findViewById(R.id.C004Layout);
         RelativeLayout K015Layout = (RelativeLayout) findViewById(R.id.K015Layout);
 
-        if(B027 != null && B027.length() != 0) {
+        if (B027 != null && B027.length() != 0) {
             B027Layout.setVisibility(View.VISIBLE);
-            B027_priceTv.setText(String.valueOf(B027_price)+"원");
+            B027_priceTv.setText(String.valueOf(B027_price) + "원");
             B027_tradeTv.setText(changeDateFormat(B027_date + B027_time));
         }
-        if(D047 != null && D047.length() != 0) {
+        if (D047 != null && D047.length() != 0) {
             D047Layout.setVisibility(View.VISIBLE);
-            D047_priceTv.setText(String.valueOf(D047_price)+"원");
+            D047_priceTv.setText(String.valueOf(D047_price) + "원");
             D047_tradeTv.setText(changeDateFormat(D047_date + D047_time));
         }
-        if(B034 != null && B034.length() != 0) {
+        if (B034 != null && B034.length() != 0) {
             B034Layout.setVisibility(View.VISIBLE);
-            B034_priceTv.setText(String.valueOf(B034_price)+"원");
+            B034_priceTv.setText(String.valueOf(B034_price) + "원");
             B034_tradeTv.setText(changeDateFormat(B034_date + B034_time));
         }
-        if(C004 != null && C004.length() != 0) {
+        if (C004 != null && C004.length() != 0) {
             C004Layout.setVisibility(View.VISIBLE);
-            C004_priceTv.setText(String.valueOf(C004_price)+"원");
+            C004_priceTv.setText(String.valueOf(C004_price) + "원");
             C004_tradeTv.setText(changeDateFormat(C004_date + C004_time));
         }
-        if(K015 != null && K015.length() != 0) {
+        if (K015 != null && K015.length() != 0) {
             K015Layout.setVisibility(View.VISIBLE);
-            K015_priceTv.setText(String.valueOf(K015_price)+"원");
+            K015_priceTv.setText(String.valueOf(K015_price) + "원");
             K015_tradeTv.setText(changeDateFormat(K015_date + K015_time));
         }
 
@@ -297,17 +334,60 @@ public class GasStationDetailActivity extends AppCompatActivity {
 
     }
 
-    private String changeDateFormat(String beforeDate){
-        SimpleDateFormat beforeDateFormat = new SimpleDateFormat("yyyyMMddHHmmss",Locale.KOREA);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd. HH:mm",Locale.KOREA);
+    private String changeDateFormat(String beforeDate) {
+        SimpleDateFormat beforeDateFormat = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd. HH:mm", Locale.KOREA);
         String resultStr = "";
 
         try {
-            resultStr = "(기준: "+simpleDateFormat.format(beforeDateFormat.parse(beforeDate))+")";
+            resultStr = "(기준: " + simpleDateFormat.format(beforeDateFormat.parse(beforeDate)) + ")";
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
         return resultStr;
+    }
+
+    private void changeAddressToLatLon() {
+        Geocoder geocoder = new Geocoder(this, Locale.KOREA);
+        List<Address> address = null;
+        System.out.println("ADDRESS isparent==" + geocoder.isPresent());
+
+        try {
+            address = geocoder.getFromLocationName(address_new, 10);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("ADDRESS==" + address);
+        if (address != null && address.size() > 0) {
+            Double latitude = address.get(0).getLatitude();
+            Double longitude = address.get(0).getLongitude();
+            setUpMap(latitude, longitude);
+
+        } else {
+            Log.d("변환 실패 ㅠㅠ!!!!!", "주소 -> 경도위도");
+        }
+    }
+
+    private void setUpMap(double lat, double lon) {
+        LatLng dest = new LatLng(lat, lon);
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(dest);
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                googleMap.addMarker(markerOptions);
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(dest));
+                googleMap.animateCamera(CameraUpdateFactory.zoomTo(16));
+            }
+        });
+
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        this.googleMap = googleMap;
     }
 }
