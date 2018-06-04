@@ -47,7 +47,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerInParent="true"
-                        android:text="주유소"
+                        android:text="세종 주유소 최저가 Top10"
                         android:textColor="@color/colorItem"
                         android:textSize="15dp" />
 
@@ -59,7 +59,8 @@
                         android:layout_centerVertical="true"
                         android:layout_marginRight="8dp"
                         android:src="@drawable/ic_action_action_search"
-                        android:tint="@color/colorPrimaryDark" />
+                        android:tint="@color/colorPrimaryDark"
+                        android:visibility="gone"/>
                 </RelativeLayout>
 
             </android.support.v7.widget.Toolbar>
