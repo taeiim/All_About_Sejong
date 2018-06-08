@@ -1,6 +1,7 @@
 package com.example.parktaeim.all_about_sejong.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -42,6 +43,9 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     public void onBindViewHolder(MainRecyclerAdapter.ViewHolder holder, int position) {
         holder.cardview_imgView.setImageResource(mainItemList.get(position).getImg());
         holder.cardview_titleTv.setText(mainItemList.get(position).getTitle());
+        if(mainItemList.get(position).isActiveMenu() == false){
+            holder.cardview_titleTv.setTextColor(Color.GRAY);
+        }
 
         holder.itemView.setOnTouchListener(new View.OnTouchListener() {
             @Override

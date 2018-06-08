@@ -8,12 +8,14 @@ import android.widget.ImageView;
  */
 
 public class MainItem {
-    public int img;
-    public String title;
+    private int img;
+    private String title;
+    private boolean isActiveMenu;
 
-    public MainItem(int img, String title) {
+    public MainItem(int img, String title, boolean isActiveMenu) {
         this.img = img;
         this.title = title;
+        this.isActiveMenu = isActiveMenu;
     }
 
     public int getImg() {
@@ -32,4 +34,11 @@ public class MainItem {
         this.title = title;
     }
 
+    public boolean isActiveMenu() {
+        return isActiveMenu;
+    }
+
+    public void setActiveMenu(boolean activeMenu) {
+        isActiveMenu = activeMenu;
+    }
 }

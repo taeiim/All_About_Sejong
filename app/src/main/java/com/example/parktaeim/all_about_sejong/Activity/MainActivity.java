@@ -3,6 +3,7 @@ package com.example.parktaeim.all_about_sejong.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.example.parktaeim.all_about_sejong.Adapter.MainRecyclerAdapter;
 import com.example.parktaeim.all_about_sejong.Model.MainItem;
@@ -27,7 +29,7 @@ import ss.com.bannerslider.views.BannerSlider;
  * Created by parktaeim on 2018. 1. 28..
  */
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private ImageView daycarecenterImg;
     private CardView daycarecenterCardView;
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private MainRecyclerAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<MainItem> mainItemArrayList = new ArrayList<>();
+    private LinearLayout parentLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         setUpRecyclerView();
 
+        parentLayout = (LinearLayout) findViewById(R.id.main_parentLayout);
         bannerSlider = (BannerSlider) findViewById(R.id.banner_slider);
 
         List<Banner> banners = new ArrayList<>();
@@ -71,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView.addOnItemTouchListener(new RecyclerViewClickListener(getApplicationContext(), recyclerView, new RecyclerViewClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Log.d("=============",String.valueOf(position)+"=========");
                 switch (position) {
                     case 0:
                         startActivity(new Intent(MainActivity.this, DayCareCenterActivity.class));
@@ -85,6 +88,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     case 3:
                         startActivity(new Intent(MainActivity.this, ClubActivity.class));
                         break;
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                        Snackbar.make(parentLayout, "업데이트 예정입니다. 조금만 기다려주세요.", 2000)
+                                .setAction("확인", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                    }
+                                }).show();
+                        break;
 
                 }
             }
@@ -97,23 +112,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setUpRecyclerData() {
-        mainItemArrayList.add(new MainItem(R.drawable.icon_kindergarten, "어린이집"));
-        mainItemArrayList.add(new MainItem(R.drawable.icon_toilet, "공중화장실"));
-        mainItemArrayList.add(new MainItem(R.drawable.icon_gas_station, "주유소"));
-        mainItemArrayList.add(new MainItem(R.drawable.icon_club, "동호회"));
-        mainItemArrayList.add(new MainItem(R.drawable.icon_kindergarten, "어린이집"));
-        mainItemArrayList.add(new MainItem(R.drawable.icon_kindergarten, "어린이집"));
-        mainItemArrayList.add(new MainItem(R.drawable.icon_kindergarten, "어린이집"));
-        mainItemArrayList.add(new MainItem(R.drawable.icon_kindergarten, "어린이집"));
+        mainItemArrayList.add(new MainItem(R.drawable.icon_kindergarten, "어린이집",true));
+        mainItemArrayList.add(new MainItem(R.drawable.icon_toilet, "공중화장실",true));
+        mainItemArrayList.add(new MainItem(R.drawable.icon_gas_station, "주유소",true));
+        mainItemArrayList.add(new MainItem(R.drawable.icon_club, "동호회",true));
+        mainItemArrayList.add(new MainItem(R.drawable.icon_bicycle, "자전거 어울링",false));
+        mainItemArrayList.add(new MainItem(R.drawable.icon_hospital, "병원",false));
+        mainItemArrayList.add(new MainItem(R.drawable.icon_medicine, "약국",false));
+        mainItemArrayList.add(new MainItem(R.drawable.icon_weather, "날씨",false));
 
     }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-
-        }
-    }
-
-
 }

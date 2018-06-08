@@ -10,7 +10,7 @@
         android:id="@+id/toilet_nameTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="화장 이름 입니다람쥐"
+        android:text="화장실명"
         android:textColor="#000"
         android:textSize="14dp" />
 
@@ -23,13 +23,14 @@
         android:textSize="13dp"
         android:text="3.84km"
         android:textColor="#6E6E6E"
-        android:layout_alignBaseline="@id/toilet_nameTv"/>
+        android:layout_alignBaseline="@id/toilet_nameTv"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/toilet_addressTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="sdlkfdlfkjdslfkjdslkfjdslkfjdslkfjdlskfjdslkfj"
+        android:text="주소"
         android:textColor="#585858"
         android:layout_below="@+id/toilet_nameTv"
         android:layout_marginTop="4dp"

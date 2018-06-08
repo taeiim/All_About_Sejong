@@ -1,21 +1,14 @@
 package com.example.parktaeim.all_about_sejong.Activity;
 
-import android.app.Activity;
 import android.app.FragmentManager;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,12 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.parktaeim.all_about_sejong.Adapter.AllCenterRecyclerViewAdapter;
 import com.example.parktaeim.all_about_sejong.KeyWord;
-import com.example.parktaeim.all_about_sejong.Model.DayCareCenterItem;
 import com.example.parktaeim.all_about_sejong.Model.GasStationDetailItem;
 import com.example.parktaeim.all_about_sejong.R;
-import com.example.parktaeim.all_about_sejong.XmlGasHandler;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -40,26 +30,20 @@ import com.wang.avi.AVLoadingIndicatorView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xml.sax.InputSource;
-import org.xml.sax.XMLReader;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import javax.net.ssl.HttpsURLConnection;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 
 /**
  * Created by parktaeim on 2018. 3. 17..
@@ -145,7 +129,7 @@ public class GasStationDetailActivity extends AppCompatActivity implements OnMap
                 BufferedInputStream inputStream = null;
                 try {
                     URL url = new URL(
-                            "http://www.opinet.co.kr/api/detailById.do?code=" + KeyWord.KEY_CODE + "&id=" + gasStationID + "&out=json"
+                            "http://www.opinet.co.kr/api/detailById.do?code=" + KeyWord.OPINET_KEY_CODE + "&id=" + gasStationID + "&out=json"
                     );
 
                     inputStream = new BufferedInputStream(url.openStream());

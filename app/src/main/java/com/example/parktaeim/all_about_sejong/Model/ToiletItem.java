@@ -7,12 +7,12 @@ import java.io.Serializable;
  */
 
 public class ToiletItem implements Serializable{
-    String toilet_openTime;
-    String toilet_address;
-    double toilet_latitude;
-    double toilet_longitude;
-    String toilet_tellNum;
-    String toilet_name;
+    private String toilet_openTime;
+    private String toilet_address;
+    private double toilet_latitude;
+    private double toilet_longitude;
+    private String toilet_tellNum;
+    private String toilet_name;
 
     public ToiletItem(String toilet_openTime, String toilet_address, double toilet_latitude, double toilet_longitude, String toilet_tellNum, String toilet_name) {
         this.toilet_openTime = toilet_openTime;

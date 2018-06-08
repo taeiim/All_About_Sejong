@@ -5,18 +5,18 @@ package com.example.parktaeim.all_about_sejong.Model;
  */
 
 public class ClubItem {
-    public String name;
-    public String tellNum;
-    public String regularMeeting;
-    public String clubType;
-    public String content;
-    public String membershipFee;
-    public String memberCnt;
-    public String businessName;
-    public String category;
-    public String cafeUrl;
-    public double latitude;
-    public double longitude;
+    private String name;
+    private String tellNum;
+    private String regularMeeting;
+    private String clubType;
+    private String content;
+    private String membershipFee;
+    private String memberCnt;
+    private String businessName;
+    private String category;
+    private String cafeUrl;
+    private double latitude;
+    private double longitude;
 
     public ClubItem(String name, String tellNum, String regularMeeting, String clubType, String content, String membershipFee, String memberCnt, String businessName, String category, String cafeUrl) {
         this.name = name;

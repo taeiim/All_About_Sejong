@@ -5,17 +5,17 @@ package com.example.parktaeim.all_about_sejong.Model;
  */
 
 public class DayCareCenterItem {
-    public String fax;
-    public String name;
-    public String type;
-    public Boolean isCar;
-    public String tellNum;
-    public int cctvCount;
-    public String address;
-    public int studentCount;
-    public int teacherCount;
-    public int playgroundCount;
-    public int roomCount;
+    private String fax;
+    private String name;
+    private String type;
+    private Boolean isCar;
+    private String tellNum;
+    private int cctvCount;
+    private String address;
+    private int studentCount;
+    private int teacherCount;
+    private int playgroundCount;
+    private int roomCount;
 
     public DayCareCenterItem(String fax, String name, String type, Boolean isCar, String tellNum, int cctvCount, String address, int studentCount, int teacherCount, int playgroundCount, int roomCount) {
         this.fax = fax;
