@@ -27,7 +27,6 @@ public class ClubPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                Log.d("-===================","-=================");
                 return SportsFragment.newInstance();
             case 1:
                 return MusicFragment.newInstance();

@@ -57,7 +57,6 @@ public class ClubActivity extends AppCompatActivity {
         getClubData();
 
         ArrayList<ClubItem> returnClubList = new ArrayList<>();
-
         if (sportsClubList != null) {
             if (category.equals("운동")) {
                 returnClubList.addAll(sportsClubList);
@@ -69,7 +68,6 @@ public class ClubActivity extends AppCompatActivity {
                 returnClubList.addAll(etcClubList);
             }
         } else getClubData();
-
 
         return returnClubList;
     }

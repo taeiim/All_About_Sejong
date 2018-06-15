@@ -3,18 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="6dp">
+    android:layout_marginBottom="6dp"
+    android:orientation="vertical">
 
     <android.support.v7.widget.CardView
         android:id="@+id/club_cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:cardBackgroundColor="@android:color/transparent"
         app:cardCornerRadius="1dp"
         app:cardElevation="5dp">
 
         <RelativeLayout
+            android:id="@+id/clubNameLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorWhite"
             android:padding="18dp">
 
             <TextView
@@ -36,7 +40,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="4dp"
                 android:layout_toLeftOf="@+id/club_cardview_memberCntTv"
-                android:text="24"
+                android:text="동호회 내용"
                 android:textColor="#585858"
                 android:textSize="13dp" />
 
@@ -51,9 +55,105 @@
                 android:text="230명"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="12dp" />
-
         </RelativeLayout>
+
     </android.support.v7.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/club_detailContentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorWhite"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전화번호 :  "
+                style="@style/ClubDetailTextView"/>
+
+            <TextView
+                android:id="@+id/clutDetail_tellNumTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="042)392-4922"
+                style="@style/ClubDetailTextView"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="기준일자 :  "
+                style="@style/ClubDetailTextView"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2015.08.12"
+                style="@style/ClubDetailTextView"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="운영시간 :  "
+                style="@style/ClubDetailTextView"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2015.08.12"
+                style="@style/ClubDetailTextView"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="기준일자 :  "
+                style="@style/ClubDetailTextView"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2015.08.12"
+                style="@style/ClubDetailTextView"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="기준일자 :  "
+                style="@style/ClubDetailTextView"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2015.08.12"
+                style="@style/ClubDetailTextView"/>
+        </LinearLayout>
+
+    </LinearLayout>
 </LinearLayout>
 
 

@@ -16,6 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.parktaeim.all_about_sejong.GeoPoint;
+import com.example.parktaeim.all_about_sejong.GeoTrans;
 import com.example.parktaeim.all_about_sejong.KeyWord;
 import com.example.parktaeim.all_about_sejong.Model.GasStationDetailItem;
 import com.example.parktaeim.all_about_sejong.R;
@@ -37,6 +39,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -54,6 +57,7 @@ public class GasStationDetailActivity extends AppCompatActivity implements OnMap
     private AVLoadingIndicatorView avi;
     private GoogleMap googleMap;
     private ImageView callIcon;
+    public static StringBuilder sb;
 
     private String brand;
     private String name;
@@ -161,11 +165,13 @@ public class GasStationDetailActivity extends AppCompatActivity implements OnMap
 
                     setUpDataString(jsonObject, oilPriceArray);
 
-                    new DataLongOperationAsynchTask().execute(address_new);
+                    changeAddressToWgs84();
 
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            setUpMap(latitude,longitude);
+
                             TextView nameTv = (TextView) findViewById(R.id.gasDetail_nameTv);
                             TextView brandTv = (TextView) findViewById(R.id.gasDetail_brandTv);
                             TextView typeTv = (TextView) findViewById(R.id.gasDetail_typeTv);
@@ -183,8 +189,6 @@ public class GasStationDetailActivity extends AppCompatActivity implements OnMap
                             });
 
                             setUpTextOilPrice();
-//                            changeAddressToLatLon();
-//                            setUpMap(36.1505449,-95.99164479999999);
 
                             LinearLayout contentLayout = (LinearLayout) findViewById(R.id.gasDetail_contentLayout);
                             contentLayout.setVisibility(View.VISIBLE);
@@ -209,6 +213,48 @@ public class GasStationDetailActivity extends AppCompatActivity implements OnMap
 
     }
 
+    private void changeAddressToWgs84(){
+        String clientId = "eHm6juoXIARjUBibf0n1";// 애플리케이션 클라이언트 아이디값";
+        String clientSecret = "h7O6vSoxwj";// 애플리케이션 클라이언트 시크릿값";\
+        try {
+            String text = URLEncoder.encode(address_new, "utf-8");
+            String apiURL = "https://openapi.naver.com/v1/map/geocode?encoding=utf-8&coordType=latlng&query="+text;
+
+            URL url = new URL(apiURL);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("X-Naver-Client-Id", clientId);
+            con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
+            int responseCode = con.getResponseCode();
+            BufferedReader br;
+            if (responseCode == 200) {
+                br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            } else {
+                br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+            }
+            sb = new StringBuilder();
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+            br.close();
+            con.disconnect();
+            System.out.println(sb.toString());
+
+            JSONObject jsonObject = new JSONObject(sb.toString());
+            JSONObject pointObject = jsonObject.getJSONObject("result").getJSONArray("items").getJSONObject(0).getJSONObject("point");
+
+            latitude = pointObject.getDouble("y");
+            longitude = pointObject.getDouble("x");
+
+            System.out.println("latitude=="+latitude+ "    longitude==="+longitude);
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
 
     private void setUpTextOilPrice() {
         TextView B027_tradeTv = (TextView) findViewById(R.id.B027_standTv);
@@ -344,28 +390,6 @@ public class GasStationDetailActivity extends AppCompatActivity implements OnMap
         return resultStr;
     }
 
-    private void changeAddressToLatLon() {
-        Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.KOREA);
-        List<Address> address = null;
-        System.out.println("ADDRESS isparent==" + geocoder.isPresent());
-
-        try {
-            address = geocoder.getFromLocationName(address_new, 10);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("ADDRESS==" + address);
-        if (address != null && address.size() > 0) {
-            Double latitude = address.get(0).getLatitude();
-            Double longitude = address.get(0).getLongitude();
-            setUpMap(latitude, longitude);
-
-        } else {
-            Log.d("변환 실패 ㅠㅠ!!!!!", "주소 -> 경도위도");
-        }
-    }
-
     public void setUpMap(double lat, double lon) {
         LatLng dest = new LatLng(lat, lon);
         MarkerOptions markerOptions = new MarkerOptions();
@@ -373,7 +397,7 @@ public class GasStationDetailActivity extends AppCompatActivity implements OnMap
 
         if(googleMap!= null){
             googleMap.addMarker(markerOptions);
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dest,17));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dest,15));
         }else {
             Log.d("GOOGLE MAP"," IS NULL");
         }
@@ -385,91 +409,6 @@ public class GasStationDetailActivity extends AppCompatActivity implements OnMap
         googleMap.setMinZoomPreference(6);
     }
 
-    private class DataLongOperationAsynchTask extends AsyncTask<String, Void, String[]> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected String[] doInBackground(String... params) {
-            String response;
-            String address = params[0];
-            Log.d("params ADDRESS==",address);
-            try {
-                HttpDataHandler httpDataHandler = new HttpDataHandler();
-//            response = httpDataHandler.getLatLongByURL("https://maps.googleapis.com/maps/api/geocode/json?address="+address);
-                response = httpDataHandler.getLatLongByURL("https://maps.googleapis.com/maps/api/geocode/json?address="+address+"&sensor=false&key=AIzaSyC2XPfo_uu76WV8MpHqLSvAF8Mwpre_-Uw");
-//            https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY
-                Log.d("response",""+response);
-                return new String[]{response};
-            } catch (Exception e) {
-                e.printStackTrace();
-                return new String[]{"error"};
-            }
-        }
-
-        @Override
-        protected void onPostExecute(String... result) {
-            try {
-                Log.d("RESULT =====",result[0]);
-                JSONObject jsonObject = new JSONObject(result[0]);
-
-                double lng = ((JSONArray)jsonObject.get("results")).getJSONObject(0)
-                        .getJSONObject("geometry").getJSONObject("location")
-                        .getDouble("lng");
-
-                double lat = ((JSONArray)jsonObject.get("results")).getJSONObject(0)
-                        .getJSONObject("geometry").getJSONObject("location")
-                        .getDouble("lat");
-
-                Log.d("latitude", "" + lat);
-                Log.d("longitude", "" + lng);
-
-                setUpMap(lat,lng);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    class HttpDataHandler{
-        public HttpDataHandler(){
-
-        }
-
-        public String getLatLongByURL(String requestURL){
-            URL url;
-            String response = "";
-            try {
-                url = new URL(requestURL);
-
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setReadTimeout(15000);
-                conn.setConnectTimeout(15000);
-                conn.setRequestMethod("GET");
-                conn.setDoInput(true);
-                conn.setRequestProperty("Content-Type",
-                        "application/x-www-form-urlencoded");
-                conn.setDoOutput(true);
-                int responseCode = conn.getResponseCode();
-
-                if (responseCode == HttpsURLConnection.HTTP_OK) {
-                    String line;
-                    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                    while ((line = br.readLine()) != null) {
-                        response += line;
-                    }
-                } else {
-                    response = "";
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return response;
-        }
-    }
 }
 
 

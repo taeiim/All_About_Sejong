@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.example.parktaeim.all_about_sejong.Adapter.GasStationLowPriceAdapter;
 import com.example.parktaeim.all_about_sejong.GeoPoint;
@@ -42,6 +43,8 @@ public class GasStationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gas_station);
 
+        ImageView backIcon = (ImageView) findViewById(R.id.gas_backIcon);
+        backIcon.setOnClickListener(v->finish());
         recyclerView = (RecyclerView) findViewById(R.id.gas_recyclerview);
         avi = (AVLoadingIndicatorView) findViewById(R.id.gasStation_avi);
         avi.show();

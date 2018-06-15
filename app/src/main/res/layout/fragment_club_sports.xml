@@ -9,6 +9,7 @@
         android:id="@+id/club_sports_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        style="@style/ClubRecyclerView"/>
+        style="@style/ClubRecyclerView"
+        android:background="@color/lightGray"/>
 
 </LinearLayout>

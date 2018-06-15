@@ -14,7 +14,6 @@ import com.example.parktaeim.all_about_sejong.Activity.ClubActivity;
 import com.example.parktaeim.all_about_sejong.Adapter.ClubRecyclerViewAdapter;
 import com.example.parktaeim.all_about_sejong.Model.ClubItem;
 import com.example.parktaeim.all_about_sejong.R;
-import com.wajahatkarim3.easyflipview.EasyFlipView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -67,6 +66,4 @@ public class SportsFragment extends android.support.v4.app.Fragment{
 
         return view;
     }
-
-
 }
