@@ -441,7 +441,3 @@ public class GasStationDetailActivity extends AppCompatActivity implements OnMap
     }
 
 }
-
-
-
-
