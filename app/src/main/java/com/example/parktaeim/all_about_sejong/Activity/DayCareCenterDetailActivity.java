@@ -103,7 +103,6 @@ public class DayCareCenterDetailActivity extends AppCompatActivity implements On
     }
 
     private void getLatLon() {
-        System.out.println("GET Lan Lon 함수");
         String clientId = "eHm6juoXIARjUBibf0n1";//애플리케이션 클라이언트 아이디값";
         String clientSecret = "h7O6vSoxwj";//애플리케이션 클라이언트 시크릿값";
         new Thread(){
@@ -112,8 +111,6 @@ public class DayCareCenterDetailActivity extends AppCompatActivity implements On
                 super.run();
 
                 try {
-                    System.out.println("GET Lan Lon 함수 TRY 문 안에 들어옴 ");
-
                     // Naver API (주소 -> 좌표)
                     String addr = URLEncoder.encode(address, "UTF-8");
                     System.out.println("ADDR+++!!!=="+addr +address);

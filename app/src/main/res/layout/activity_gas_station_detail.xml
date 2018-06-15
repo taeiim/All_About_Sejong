@@ -278,7 +278,7 @@
 
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="90dp"
+                    android:layout_height="85dp"
                     android:layout_marginTop="16dp"
                     app:cardCornerRadius="10dp">
 
@@ -294,7 +294,7 @@
                             <ImageView
                                 android:id="@+id/gasDetail_isMaintImgView"
                                 style="@style/GasDetailIsImgView"
-                                android:src="@drawable/icon_call" />
+                                android:src="@drawable/icon_car_facility" />
 
                             <TextView
                                 android:id="@+id/gasDetail_isMaintTv"
@@ -311,12 +311,12 @@
                         <LinearLayout style="@style/GasDetailIsLayout">
 
                             <ImageView
-                                android:id="@+id/gasDetail_isCarWasImgView"
+                                android:id="@+id/gasDetail_isCarWashImgView"
                                 style="@style/GasDetailIsImgView"
-                                android:src="@drawable/icon_call" />
+                                android:src="@drawable/icon_car_wash" />
 
                             <TextView
-                                android:id="@+id/gasDetail_isCarWasTv"
+                                android:id="@+id/gasDetail_isCarWashTv"
                                 style="@style/GasDetailIsTextView"
                                 android:text="세차장" />
                         </LinearLayout>
@@ -332,7 +332,7 @@
                             <ImageView
                                 android:id="@+id/gasDetail_isConvenienceImgView"
                                 style="@style/GasDetailIsImgView"
-                                android:src="@drawable/icon_call" />
+                                android:src="@drawable/icon_convenience" />
 
                             <TextView
                                 android:id="@+id/gasDetail_isConvenienceTv"
@@ -352,7 +352,7 @@
                             <ImageView
                                 android:id="@+id/gasDetail_isKPETROImgView"
                                 style="@style/GasDetailIsImgView"
-                                android:src="@drawable/icon_call" />
+                                android:src="@drawable/icon_kpetro" />
 
                             <TextView
                                 android:id="@+id/gasDetail_isKPETROTv"

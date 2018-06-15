@@ -2,10 +2,8 @@ package com.example.parktaeim.all_about_sejong.Activity;
 
 import android.app.FragmentManager;
 import android.content.Intent;
-import android.location.Address;
-import android.location.Geocoder;
+import android.graphics.Color;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -16,8 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.parktaeim.all_about_sejong.GeoPoint;
-import com.example.parktaeim.all_about_sejong.GeoTrans;
 import com.example.parktaeim.all_about_sejong.KeyWord;
 import com.example.parktaeim.all_about_sejong.Model.GasStationDetailItem;
 import com.example.parktaeim.all_about_sejong.R;
@@ -43,10 +39,7 @@ import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
-
-import javax.net.ssl.HttpsURLConnection;
 
 /**
  * Created by parktaeim on 2018. 3. 17..
@@ -101,10 +94,22 @@ public class GasStationDetailActivity extends AppCompatActivity implements OnMap
     private String K015_date;
     private String K015_time;
 
+    private ImageView carFacilityImgView;
+    private ImageView carWashImgView;
+    private ImageView convenienceStoreImgView;
+    private ImageView KPETROImgView;
+
+    private TextView carFacilityTextView;
+    private TextView carWashTextView;
+    private TextView convenienceStoreTextView;
+    private TextView KPETROTextView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gas_station_detail);
+
+        init();
 
         avi = (AVLoadingIndicatorView) findViewById(R.id.gasStationDetail_avi);
         avi.show();
@@ -121,6 +126,31 @@ public class GasStationDetailActivity extends AppCompatActivity implements OnMap
 
     }
 
+    private void init() {
+        carFacilityImgView = (ImageView) findViewById(R.id.gasDetail_isMaintImgView);
+        carWashImgView = (ImageView) findViewById(R.id.gasDetail_isCarWashImgView);
+        convenienceStoreImgView = (ImageView) findViewById(R.id.gasDetail_isConvenienceImgView);
+        KPETROImgView = (ImageView) findViewById(R.id.gasDetail_isKPETROImgView);
+
+        carFacilityTextView = (TextView) findViewById(R.id.gasDetail_isMaintTv);
+        carWashTextView = (TextView) findViewById(R.id.gasDetail_isCarWashTv);
+        convenienceStoreTextView = (TextView) findViewById(R.id.gasDetail_isConvenienceTv);
+        KPETROTextView = (TextView) findViewById(R.id.gasDetail_isKPETROTv);
+    }
+
+    private void setUpIsLayout(){
+        boolean[] booleanArr = {isMaint,isCarWash,isConvenience,isKPETRO};
+        ImageView[] isLayoutImgViewArr = {carFacilityImgView,carWashImgView,convenienceStoreImgView,KPETROImgView};
+        TextView[] isLayoutTvArr = {carFacilityTextView, carWashTextView, convenienceStoreTextView, KPETROTextView};
+
+        for(int i=0;i<booleanArr.length;i++){
+            if(booleanArr[i] == false){
+                isLayoutImgViewArr[i].setColorFilter(Color.LTGRAY);
+                isLayoutTvArr[i].setTextColor(Color.GRAY);
+            }else{
+            }
+        }
+    }
     private void getGasStationInfo() {
         Intent getIdIntent = getIntent();
         String gasStationID = getIdIntent.getExtras().getString("gasStationID");
@@ -171,6 +201,7 @@ public class GasStationDetailActivity extends AppCompatActivity implements OnMap
                         @Override
                         public void run() {
                             setUpMap(latitude,longitude);
+                            setUpIsLayout();
 
                             TextView nameTv = (TextView) findViewById(R.id.gasDetail_nameTv);
                             TextView brandTv = (TextView) findViewById(R.id.gasDetail_brandTv);
