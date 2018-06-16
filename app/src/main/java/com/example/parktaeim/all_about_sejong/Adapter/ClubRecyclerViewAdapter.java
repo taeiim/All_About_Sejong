@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.parktaeim.all_about_sejong.Model.ClubItem;
@@ -33,12 +34,10 @@ public class ClubRecyclerViewAdapter extends RecyclerView.Adapter<ClubRecyclerVi
 
     @Override
     public ClubRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_club_cardview,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_club_cardview, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
-
-    int selectPos = 0;
 
     @Override
     public void onBindViewHolder(ClubRecyclerViewAdapter.ViewHolder holder, int position) {
@@ -53,26 +52,26 @@ public class ClubRecyclerViewAdapter extends RecyclerView.Adapter<ClubRecyclerVi
         String clubTellNum = clubItemArrayList.get(position).getTellNum();
         String clubCafeURL = clubItemArrayList.get(position).getCafeUrl();
 
-        String[] clubArr = {clubName,clubContent,clubMember,clubBusinessName,clubType,clubRegularMeeting,clubMembershipFee,clubLeader,clubTellNum, clubCafeURL};
-        TextView[] clubTv = {holder.club_nameTv, holder.club_contentTv, holder.club_memberCntTv, holder.club_businessNameTv,holder.club_clubTypeTv,holder.club_regularMeetingTv, holder.club_membershipFeeTv, holder.club_leaderTv, holder.club_tellNumTv, holder.club_cafeURLTv};
-        LinearLayout[] clubSeperateLayout = {null, null, null, holder.businessNameLayout,holder.clubTypeLayout,holder.regularMeetingLayout, holder.membershipFeeLayout, holder.leaderLayout, holder.tellNumLayout, holder.cafeURLLayout};
+        String[] clubArr = {clubName, clubContent, clubMember, clubBusinessName, clubType, clubRegularMeeting, clubMembershipFee, clubLeader, clubTellNum, clubCafeURL};
+        TextView[] clubTv = {holder.club_nameTv, holder.club_contentTv, holder.club_memberCntTv, holder.club_businessNameTv, holder.club_clubTypeTv, holder.club_regularMeetingTv, holder.club_membershipFeeTv, holder.club_leaderTv, holder.club_tellNumTv, holder.club_cafeURLTv};
+        LinearLayout[] clubSeperateLayout = {null, null, null, holder.businessNameLayout, holder.clubTypeLayout, holder.regularMeetingLayout, holder.membershipFeeLayout, holder.leaderLayout, holder.tellNumLayout, holder.cafeURLLayout};
 
-        for(int i=0; i<clubArr.length;i++){
-            if(clubArr[i].equals("null") || clubArr[i] == null || clubArr[i].length() == 0){
+        for (int i = 0; i < clubArr.length; i++) {
+            if (clubArr[i].equals("null") || clubArr[i] == null || clubArr[i].length() == 0) {
                 clubTv[i].setText("");
-                if(clubSeperateLayout[i]!=null) clubSeperateLayout[i].setVisibility(View.GONE);
-            }else {
+                if (clubSeperateLayout[i] != null) clubSeperateLayout[i].setVisibility(View.GONE);
+            } else {
                 clubTv[i].setText(clubArr[i]);
-                if(clubTv[i] == holder.club_tellNumTv)
+                if (clubTv[i] == holder.club_tellNumTv)
                     clubTv[i].setText(Html.fromHtml("<u>" + clubArr[i] + "</u>"));
 
             }
         }
 
-        setUpDetailView(holder,position);
+        setUpDetailView(holder);
 
-        holder.club_tellNumTv.setOnClickListener(v-> {
-            context.startActivity(new Intent("android.intent.action.DIAL", Uri.parse("tel:"+clubTellNum)));
+        holder.club_tellNumTv.setOnClickListener(v -> {
+            context.startActivity(new Intent("android.intent.action.DIAL", Uri.parse("tel:" + clubTellNum)));
         });
     }
 
@@ -94,6 +93,7 @@ public class ClubRecyclerViewAdapter extends RecyclerView.Adapter<ClubRecyclerVi
         private TextView club_tellNumTv;
         private TextView club_cafeURLTv;
 
+        private RelativeLayout mainInfoLayout;
         private LinearLayout detailInfoLayout;
         private LinearLayout businessNameLayout;
         private LinearLayout clubTypeLayout;
@@ -116,6 +116,7 @@ public class ClubRecyclerViewAdapter extends RecyclerView.Adapter<ClubRecyclerVi
             club_tellNumTv = (TextView) itemView.findViewById(R.id.tellNumTv);
             club_cafeURLTv = (TextView) itemView.findViewById(R.id.cafeURLTv);
 
+            mainInfoLayout = (RelativeLayout) itemView.findViewById(R.id.clubNameLayout);
             detailInfoLayout = (LinearLayout) itemView.findViewById(R.id.clubDetail_contentLayout);
             businessNameLayout = (LinearLayout) itemView.findViewById(R.id.businessNameLayout);
             clubTypeLayout = (LinearLayout) itemView.findViewById(R.id.clubTypeLayout);
@@ -128,29 +129,14 @@ public class ClubRecyclerViewAdapter extends RecyclerView.Adapter<ClubRecyclerVi
         }
     }
 
-    private void setUpDetailView(ClubRecyclerViewAdapter.ViewHolder holder,int position){
-        holder.itemView.setOnClickListener(v->{
-            selectPos = holder.getAdapterPosition();
-            System.out.println("SelectPos == "+selectPos);
-            System.out.println("Position == "+position);
-
-            if(position == selectPos){
-                if(holder.detailInfoLayout.getVisibility() == View.VISIBLE){
-                    holder.detailInfoLayout.setVisibility(View.GONE);
-                }else {
-                    holder.detailInfoLayout.setVisibility(View.VISIBLE);
-                }
-            }else {
-
+    private void setUpDetailView(ClubRecyclerViewAdapter.ViewHolder holder) {
+        holder.mainInfoLayout.setOnClickListener(v -> {
+            if (holder.detailInfoLayout.getVisibility() == View.VISIBLE) {
+                holder.detailInfoLayout.setVisibility(View.GONE);
+            } else {
+                holder.detailInfoLayout.setVisibility(View.VISIBLE);
             }
-//            if(holder.detailInfoLayout.getVisibility() == View.VISIBLE){
-//                v.setVisibility(View.GONE);
-//            }else {
-//                v.setVisibility(View.VISIBLE);
-//            }
 
         });
-
-
     }
 }

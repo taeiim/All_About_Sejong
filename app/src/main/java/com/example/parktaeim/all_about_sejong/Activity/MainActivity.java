@@ -1,6 +1,7 @@
 package com.example.parktaeim.all_about_sejong.Activity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -11,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.parktaeim.all_about_sejong.Adapter.MainRecyclerAdapter;
 import com.example.parktaeim.all_about_sejong.Model.MainItem;
@@ -94,13 +96,18 @@ public class MainActivity extends AppCompatActivity {
                     case 5:
                     case 6:
                     case 7:
-                        Snackbar.make(parentLayout, "업데이트 예정입니다. 조금만 기다려주세요.", 2000)
+                        Snackbar snackbar = Snackbar.make(parentLayout, "업데이트 예정입니다. 조금만 기다려주세요.", 2000)
                                 .setAction("확인", new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
 
                                     }
-                                }).show();
+                                });
+                        TextView snackbarTv = (TextView) (snackbar.getView()).findViewById(android.support.design.R.id.snackbar_text);
+                        TextView snackbarBtnTv = (TextView) (snackbar.getView()).findViewById(android.support.design.R.id.snackbar_action);
+                        snackbarTv.setTextSize(9);
+                        snackbarBtnTv.setTextSize(10);
+                        snackbar.show();
                         break;
                 }
             }

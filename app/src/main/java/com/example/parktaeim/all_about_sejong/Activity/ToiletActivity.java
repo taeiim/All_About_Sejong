@@ -42,9 +42,6 @@ public class ToiletActivity extends AppCompatActivity {
     private MaterialSearchView searchView;
     private AVLoadingIndicatorView avi;
 
-    private double latitude;
-    private double longitude;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,8 +54,6 @@ public class ToiletActivity extends AppCompatActivity {
             Intent intent = new Intent(ToiletActivity.this, ToiletMapsActivity.class);
             intent.putExtra("ToiletArrayList", toiletItemArrayList);
             startActivity(intent);
-//            startActivity(new Intent(ToiletActivity.this, ToiletMapsActivity.class));
-
         });
 
         searchView = (MaterialSearchView) findViewById(R.id.toilet_searchView);
@@ -67,7 +62,7 @@ public class ToiletActivity extends AppCompatActivity {
 
         startAvi();
         getToiletData();
-        setUpsearchView();
+
     }
 
     private void setUpsearchView(){
@@ -139,6 +134,7 @@ public class ToiletActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             setUpRecyclerView();
+                            setUpsearchView();
                             stopAvi();
                             searchIcon.setVisibility(View.VISIBLE);
                         }

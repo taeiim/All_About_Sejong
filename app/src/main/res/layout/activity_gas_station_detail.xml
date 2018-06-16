@@ -50,7 +50,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textColor="#fff" />
+                    android:textColor="#fff"
+                    android:textSize="16dp"/>
 
                 <TextView
                     android:id="@+id/gasDetail_nameTv"

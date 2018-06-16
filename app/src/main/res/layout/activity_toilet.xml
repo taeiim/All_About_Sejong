@@ -86,7 +86,8 @@
                 android:textColor="#000"
                 android:gravity="right|center"
                 android:paddingRight="16dp"
-                android:background="@color/lightGray"/>
+                android:background="@color/lightGray"
+                android:textSize="14dp"/>
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
