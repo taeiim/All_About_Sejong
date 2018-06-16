@@ -99,7 +99,6 @@ public class ClubActivity extends AppCompatActivity {
             JSONArray clubJsonArray = new JSONArray(json);
             for (int i = 0; i < clubJsonArray.length(); i++) {
                 JSONObject jsonObject = (JSONObject) clubJsonArray.get(i);
-                Log.d("CLUB DATA==",jsonObject.toString());
                 String name = jsonObject.getString("TITLE");
                 String tellNum = jsonObject.getString("DATA6");
                 String regularMeeting = jsonObject.getString("DATA5");  //정기모임
@@ -121,7 +120,7 @@ public class ClubActivity extends AppCompatActivity {
                 } else if (category.equals("기타")) {
                     etcClubList.add(new ClubItem(name, tellNum, regularMeeting, clubType, content, membershipFee, memberCnt, leader, businessName, category, cafeUrl));
                 } else {
-                    Log.d("category 아무에도 해당안됨=", "===========확인바람=====");
+                    //Error
                 }
             }
 
@@ -132,7 +131,7 @@ public class ClubActivity extends AppCompatActivity {
     }
 
     private void setUpInfoDialog() {
-        String infoStr = "동호회 정보는 2015년 10월 기준입니다.";
+        String infoStr = "동호회 정보는 2015년 12월 기준입니다.\n\n카드뷰를 클릭하시면 해당 동호회의 상세정보를 보실 수 있습니다.";
 
         ImageView infoIcon = (ImageView) findViewById(R.id.club_infoIcon);
         infoIcon.setOnClickListener(v->{

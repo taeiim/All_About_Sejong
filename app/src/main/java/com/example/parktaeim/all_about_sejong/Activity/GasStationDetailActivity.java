@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -154,7 +153,6 @@ public class GasStationDetailActivity extends AppCompatActivity implements OnMap
     private void getGasStationInfo() {
         Intent getIdIntent = getIntent();
         String gasStationID = getIdIntent.getExtras().getString("gasStationID");
-        Log.d("GasStationID===========", gasStationID);
 
         new Thread() {
             @Override
@@ -180,8 +178,6 @@ public class GasStationDetailActivity extends AppCompatActivity implements OnMap
                     JSONObject firstObject = new JSONObject(jsonString);
                     JSONObject resultObject = (JSONObject) firstObject.get("RESULT");
                     JSONArray resultArray = resultObject.getJSONArray("OIL");
-                    Log.d("RESULT JSON===", resultArray.toString());
-
 
                     JSONObject jsonObject = (JSONObject) resultArray.get(0);
                     name = jsonObject.getString("OS_NM");
@@ -430,7 +426,7 @@ public class GasStationDetailActivity extends AppCompatActivity implements OnMap
             googleMap.addMarker(markerOptions);
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dest,15));
         }else {
-            Log.d("GOOGLE MAP"," IS NULL");
+            //Google Map Is NULL
         }
     }
 

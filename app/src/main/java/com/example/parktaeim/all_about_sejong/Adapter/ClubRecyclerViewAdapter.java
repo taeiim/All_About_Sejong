@@ -141,7 +141,7 @@ public class ClubRecyclerViewAdapter extends RecyclerView.Adapter<ClubRecyclerVi
                     holder.detailInfoLayout.setVisibility(View.VISIBLE);
                 }
             }else {
-                Log.d("Position not"," SelectPos");
+
             }
 //            if(holder.detailInfoLayout.getVisibility() == View.VISIBLE){
 //                v.setVisibility(View.GONE);

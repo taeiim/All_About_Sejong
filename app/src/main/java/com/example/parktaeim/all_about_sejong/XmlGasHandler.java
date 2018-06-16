@@ -1,7 +1,5 @@
 package com.example.parktaeim.all_about_sejong;
 
-import android.util.Log;
-
 import com.example.parktaeim.all_about_sejong.Model.GasStationItem;
 
 import org.xml.sax.Attributes;
@@ -77,8 +75,6 @@ public class XmlGasHandler extends DefaultHandler {
         if (elementOn) {
             elementValue = (new String(ch, start, length)).trim();
             elementOn = false;
-
-            Log.d("sdsdflk",elementValue);
 
         }
     }

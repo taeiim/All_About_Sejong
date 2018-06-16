@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -122,7 +121,6 @@ public class DayCareCenterDetailActivity extends AppCompatActivity implements On
                     con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
                     int responseCode = con.getResponseCode();
                     BufferedReader br;
-                    Log.d("RESPONSE CODE ==",String.valueOf(responseCode));
                     if(responseCode==200) {
                         br = new BufferedReader(new InputStreamReader(con.getInputStream()));
                     } else {
@@ -145,7 +143,6 @@ public class DayCareCenterDetailActivity extends AppCompatActivity implements On
 
                     double lon = pointObject.getDouble("x");
                     double lat = pointObject.getDouble("y");
-                    Log.d("Lat==="+lat, "Lon=="+lon);
 
                     setUpMap(lat,lon);
 

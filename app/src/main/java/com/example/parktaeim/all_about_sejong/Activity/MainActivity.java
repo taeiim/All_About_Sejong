@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ss.com.bannerslider.banners.Banner;
+import ss.com.bannerslider.banners.DrawableBanner;
 import ss.com.bannerslider.banners.RemoteBanner;
 import ss.com.bannerslider.views.BannerSlider;
 
@@ -57,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
         bannerSlider = (BannerSlider) findViewById(R.id.banner_slider);
 
         List<Banner> banners = new ArrayList<>();
-        banners.add(new RemoteBanner("http://cfile1.uf.tistory.com/image/275A934355E46C592A0445"));
-        banners.add(new RemoteBanner("https://c-lj.gnst.jp/public/article/detail/a/00/00/a0000449/img/basic/a0000449_main.jpg?20170412195903"));
-        banners.add(new RemoteBanner("http://i43.tinypic.com/2598wb7.jpg"));
+        banners.add(new DrawableBanner(R.drawable.img_banner1));
+        banners.add(new DrawableBanner(R.drawable.img_banner2));
+        banners.add(new DrawableBanner(R.drawable.img_banner3));
 //        banners.add(new DrawableBanner(R.drawable.drawable));
 
         bannerSlider.setBanners(banners);
@@ -102,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 }).show();
                         break;
-
                 }
             }
 

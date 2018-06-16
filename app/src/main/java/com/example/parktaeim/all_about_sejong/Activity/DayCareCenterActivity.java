@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -154,7 +153,6 @@ public class  DayCareCenterActivity extends AppCompatActivity{
                     JSONObject jsonObject = new JSONObject(jsonString);
                     JSONObject resultObject = (JSONObject) jsonObject.get("result");
                     JSONArray resultArray = resultObject.getJSONArray("records");
-                    Log.d("RESULT JSON===", resultArray.toString());
 
                     dayCareCenterItemArrayList = getArrayList(resultArray);
 
@@ -221,7 +219,6 @@ public class  DayCareCenterActivity extends AppCompatActivity{
             e.printStackTrace();
         }
 
-        Log.d("arrayList",arrayList.toString());
         return arrayList;
     }
 

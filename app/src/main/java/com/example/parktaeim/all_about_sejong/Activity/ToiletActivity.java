@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -130,15 +129,11 @@ public class ToiletActivity extends AppCompatActivity {
 
                     jsonString = stringBuffer.toString();
 
-                    Log.d("GET TOILET ====",jsonString);
-
                     JSONObject jsonObject = new JSONObject(jsonString);
                     JSONObject resultObject = (JSONObject) jsonObject.get("result");
                     JSONArray resultArray = resultObject.getJSONArray("records");
-                    Log.d("RESULT JSON===", resultArray.toString());
 
                     toiletItemArrayList = getToiletList(resultArray);
-                    Log.d("TOILET ARRAY LIST ==",toiletItemArrayList.toString());
 
                     runOnUiThread(new Runnable() {
                         @Override
@@ -171,12 +166,6 @@ public class ToiletActivity extends AppCompatActivity {
                 double latitude = jsonObject.getDouble("위도");
                 double longitude = jsonObject.getDouble("경도");
 
-//                Log.d("name length",String.valueOf(name));
-//                Log.d("tellnum length",String.valueOf(tellNum));
-//                Log.d("address length",String.valueOf(address));
-//                Log.d("opentime length",String.valueOf(openTime));
-//                Log.d("latitude length",String.valueOf(String.valueOf(latitude)));
-
                 if(name.length() != 0 && tellNum.length()!=0 && address.length() != 0 && openTime.length() !=0 && String.valueOf(latitude).length() !=0 ){
                     arrayList.add(new ToiletItem(openTime,address,latitude,longitude,tellNum,name));
                 }
@@ -186,7 +175,6 @@ public class ToiletActivity extends AppCompatActivity {
             }
         }
 
-        Log.d("TOILET GET ARRAYLIST ==",arrayList.toString());
         return arrayList;
     }
 
