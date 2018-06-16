@@ -30,11 +30,6 @@ import ss.com.bannerslider.views.BannerSlider;
  */
 
 public class MainActivity extends AppCompatActivity {
-
-    private ImageView daycarecenterImg;
-    private CardView daycarecenterCardView;
-    private CardView toiletCardView;
-    private CardView clubCardView;
     private BannerSlider bannerSlider;
     private RecyclerView recyclerView;
     private MainRecyclerAdapter adapter;
@@ -47,9 +42,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        init();
         setUpRecyclerView();
+        setUpBanner();
 
+    }
+
+    private void init() {
         parentLayout = (LinearLayout) findViewById(R.id.main_parentLayout);
+        recyclerView = (RecyclerView) findViewById(R.id.main_recyclerView);
+    }
+
+    private void setUpBanner() {
         bannerSlider = (BannerSlider) findViewById(R.id.banner_slider);
 
         List<Banner> banners = new ArrayList<>();
@@ -59,11 +63,9 @@ public class MainActivity extends AppCompatActivity {
 //        banners.add(new DrawableBanner(R.drawable.drawable));
 
         bannerSlider.setBanners(banners);
-
     }
 
     private void setUpRecyclerView() {
-        recyclerView = (RecyclerView) findViewById(R.id.main_recyclerView);
         layoutManager = new GridLayoutManager(getApplicationContext(), 3);
 
         setUpRecyclerData();

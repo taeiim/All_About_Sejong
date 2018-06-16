@@ -80,11 +80,13 @@
 
             <TextView
                 android:id="@+id/intentMapToilet_textView"
-                android:layout_width="80dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="지도보기"
-                android:textColor="#000" />
+                android:text="지도에서 보기 > "
+                android:textColor="#000"
+                android:gravity="right|center"
+                android:paddingRight="16dp"
+                android:background="@color/lightGray"/>
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView

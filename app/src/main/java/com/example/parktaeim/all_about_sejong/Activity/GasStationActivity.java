@@ -3,6 +3,7 @@ package com.example.parktaeim.all_about_sejong.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.parktaeim.all_about_sejong.Adapter.GasStationLowPriceAdapter;
+import com.example.parktaeim.all_about_sejong.InfoDialog;
 import com.example.parktaeim.all_about_sejong.Model.GasStationItem;
 import com.example.parktaeim.all_about_sejong.R;
 import com.example.parktaeim.all_about_sejong.RecyclerViewClickListener;
@@ -49,6 +51,7 @@ public class GasStationActivity extends AppCompatActivity {
 
         parsingLowestPriceArrayList();
         setUpIntent();
+        setUpInfoDialog();
     }
 
     private void setUpIntent() {
@@ -112,5 +115,21 @@ public class GasStationActivity extends AppCompatActivity {
 
         adapter = new GasStationLowPriceAdapter(gasStationItemArrayList);
         recyclerView.setAdapter(adapter);
+    }
+
+    private void setUpInfoDialog() {
+        String infoStr = "주유소 가격 정보는 매일 업데이트 됩니다.\n\n근처 주유소, 세종시 전체 주유소 기능 업데이트 준비중입니다. ";
+
+        ImageView infoIcon = (ImageView) findViewById(R.id.gas_infoIcon);
+        infoIcon.setOnClickListener(v->{
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            InfoDialog infoDialog = new InfoDialog();
+
+            Bundle args = new Bundle();
+            args.putString("infoText",infoStr);
+
+            infoDialog.setArguments(args);
+            infoDialog.show(fragmentManager,"infoText");
+        });
     }
 }

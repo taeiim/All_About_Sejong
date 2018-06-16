@@ -52,6 +52,16 @@
                         android:textSize="15dp" />
 
                     <ImageView
+                        android:id="@+id/gas_infoIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="16dp"
+                        android:src="@drawable/icon_question"
+                        android:tint="@color/colorPrimary"/>
+
+                    <ImageView
                         android:id="@+id/icon_search"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

@@ -53,7 +53,7 @@ public class EtcFragment extends android.support.v4.app.Fragment {
             etcClubArrayList = clubActivity.getClubArrayList("기타");
         }
 
-        clubAdapter = new ClubRecyclerViewAdapter(etcClubArrayList);
+        clubAdapter = new ClubRecyclerViewAdapter(etcClubArrayList,getContext());
         recyclerView.setAdapter(clubAdapter);
 
         return view;

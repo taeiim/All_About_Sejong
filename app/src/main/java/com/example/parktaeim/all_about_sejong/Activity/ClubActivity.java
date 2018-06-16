@@ -4,12 +4,14 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ImageView;
 
 import com.example.parktaeim.all_about_sejong.Adapter.ClubPagerAdapter;
+import com.example.parktaeim.all_about_sejong.InfoDialog;
 import com.example.parktaeim.all_about_sejong.Model.ClubItem;
 import com.example.parktaeim.all_about_sejong.R;
 
@@ -51,6 +53,7 @@ public class ClubActivity extends AppCompatActivity {
         backIcon.setOnClickListener(v -> finish());
 
         getClubData();
+        setUpInfoDialog();
     }
 
     public ArrayList<ClubItem> getClubArrayList(String category) {
@@ -96,6 +99,7 @@ public class ClubActivity extends AppCompatActivity {
             JSONArray clubJsonArray = new JSONArray(json);
             for (int i = 0; i < clubJsonArray.length(); i++) {
                 JSONObject jsonObject = (JSONObject) clubJsonArray.get(i);
+                Log.d("CLUB DATA==",jsonObject.toString());
                 String name = jsonObject.getString("TITLE");
                 String tellNum = jsonObject.getString("DATA6");
                 String regularMeeting = jsonObject.getString("DATA5");  //정기모임
@@ -103,18 +107,19 @@ public class ClubActivity extends AppCompatActivity {
                 String content = jsonObject.getString("CONTENT");
                 String membershipFee = jsonObject.getString("DATA3");
                 String memberCnt = jsonObject.getString("DATA2");
+                String leader = jsonObject.getString("DATA1");
                 String businessName = jsonObject.getString("COMPANY");  //상호명
                 String category = jsonObject.getString("SECONDCATEGORY");
                 String cafeUrl = jsonObject.getString("DATA14");
 
                 if (category.equals("운동")) {
-                    sportsClubList.add(new ClubItem(name, tellNum, regularMeeting, clubType, content, membershipFee, memberCnt, businessName, category, cafeUrl));
+                    sportsClubList.add(new ClubItem(name, tellNum, regularMeeting, clubType, content, membershipFee, memberCnt, leader,businessName, category, cafeUrl));
                 } else if (category.equals("음악")) {
-                    musicClubList.add(new ClubItem(name, tellNum, regularMeeting, clubType, content, membershipFee, memberCnt, businessName, category, cafeUrl));
+                    musicClubList.add(new ClubItem(name, tellNum, regularMeeting, clubType, content, membershipFee, memberCnt, leader, businessName, category, cafeUrl));
                 } else if (category.equals("취미")) {
-                    hobbyClubList.add(new ClubItem(name, tellNum, regularMeeting, clubType, content, membershipFee, memberCnt, businessName, category, cafeUrl));
+                    hobbyClubList.add(new ClubItem(name, tellNum, regularMeeting, clubType, content, membershipFee, memberCnt, leader, businessName, category, cafeUrl));
                 } else if (category.equals("기타")) {
-                    etcClubList.add(new ClubItem(name, tellNum, regularMeeting, clubType, content, membershipFee, memberCnt, businessName, category, cafeUrl));
+                    etcClubList.add(new ClubItem(name, tellNum, regularMeeting, clubType, content, membershipFee, memberCnt, leader, businessName, category, cafeUrl));
                 } else {
                     Log.d("category 아무에도 해당안됨=", "===========확인바람=====");
                 }
@@ -126,4 +131,19 @@ public class ClubActivity extends AppCompatActivity {
 
     }
 
+    private void setUpInfoDialog() {
+        String infoStr = "동호회 정보는 2015년 10월 기준입니다.";
+
+        ImageView infoIcon = (ImageView) findViewById(R.id.club_infoIcon);
+        infoIcon.setOnClickListener(v->{
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            InfoDialog infoDialog = new InfoDialog();
+
+            Bundle args = new Bundle();
+            args.putString("infoText",infoStr);
+
+            infoDialog.setArguments(args);
+            infoDialog.show(fragmentManager,"infoText");
+        });
+    }
 }

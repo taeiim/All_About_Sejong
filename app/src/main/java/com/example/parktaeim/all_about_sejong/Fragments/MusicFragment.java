@@ -53,10 +53,7 @@ public class MusicFragment extends android.support.v4.app.Fragment {
             musicClubArrayList = clubActivity.getClubArrayList("음악");
         }
 
-        clubAdapter = new ClubRecyclerViewAdapter(musicClubArrayList);
-        recyclerView.setAdapter(clubAdapter);
-
-        clubAdapter = new ClubRecyclerViewAdapter(musicClubArrayList);
+        clubAdapter = new ClubRecyclerViewAdapter(musicClubArrayList,getContext());
         recyclerView.setAdapter(clubAdapter);
 
         return view;

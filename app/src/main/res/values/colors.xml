@@ -13,4 +13,6 @@
     <color name="colorGray"> #ADADAD</color>
     <color name="DarkGray"> #767676</color>
 
+    <color name="clubBackground">#E4DDDD</color>
+
 </resources>

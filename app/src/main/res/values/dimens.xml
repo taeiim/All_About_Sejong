@@ -21,4 +21,6 @@
     <dimen name="gasDetail_viewWidth"> 1dp </dimen>
     <dimen name="gasDetail_infoTextSize">14dp</dimen>
 
+    <dimen name="infoDialog_imgSize">50dp</dimen>
+
 </resources>

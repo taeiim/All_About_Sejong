@@ -12,13 +12,14 @@ public class ClubItem {
     private String content;
     private String membershipFee;
     private String memberCnt;
+    private String leader;
     private String businessName;
     private String category;
     private String cafeUrl;
     private double latitude;
     private double longitude;
 
-    public ClubItem(String name, String tellNum, String regularMeeting, String clubType, String content, String membershipFee, String memberCnt, String businessName, String category, String cafeUrl) {
+    public ClubItem(String name, String tellNum, String regularMeeting, String clubType, String content, String membershipFee, String memberCnt, String leader, String businessName, String category, String cafeUrl) {
         this.name = name;
         this.tellNum = tellNum;
         this.regularMeeting = regularMeeting;
@@ -26,6 +27,7 @@ public class ClubItem {
         this.content = content;
         this.membershipFee = membershipFee;
         this.memberCnt = memberCnt;
+        this.leader = leader;
         this.businessName = businessName;
         this.category = category;
         this.cafeUrl = cafeUrl;
@@ -111,4 +113,11 @@ public class ClubItem {
         this.cafeUrl = cafeUrl;
     }
 
+    public String getLeader() {
+        return leader;
+    }
+
+    public void setLeader(String leader) {
+        this.leader = leader;
+    }
 }

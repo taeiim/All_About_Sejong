@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/storeDialog_cardView"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="45dp"
+        android:background="@color/colorWhite"
+        app:cardCornerRadius="25dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="30dp">
+
+            <ImageView
+                android:layout_width="@dimen/infoDialog_imgSize"
+                android:layout_height="@dimen/infoDialog_imgSize"
+                android:src="@drawable/icon_info"
+                android:tint="@color/colorPrimary"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:id="@+id/dialogInfo_infoTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:text="동호회 정보는 2015년 10월 25일 기준입니다."
+                android:gravity="center_horizontal"/>
+
+            <Button
+                android:id="@+id/dialogInfo_cancelBtn"
+                android:layout_width="200dp"
+                android:layout_height="35dp"
+                android:background="@drawable/solid_purple"
+                android:text="확인"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_marginTop="30dp"/>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

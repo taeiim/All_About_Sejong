@@ -53,7 +53,7 @@ public class HobbyFragment extends android.support.v4.app.Fragment{
             hobbyClubArrayList = clubActivity.getClubArrayList("취미");
         }
 
-        clubAdapter = new ClubRecyclerViewAdapter(hobbyClubArrayList);
+        clubAdapter = new ClubRecyclerViewAdapter(hobbyClubArrayList,getContext());
         recyclerView.setAdapter(clubAdapter);
 
         return view;

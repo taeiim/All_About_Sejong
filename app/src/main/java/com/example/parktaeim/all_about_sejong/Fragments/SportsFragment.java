@@ -61,7 +61,7 @@ public class SportsFragment extends android.support.v4.app.Fragment{
             sportsClubArrayList = clubActivity.getClubArrayList("운동");
         }
 
-        clubAdapter = new ClubRecyclerViewAdapter(sportsClubArrayList);
+        clubAdapter = new ClubRecyclerViewAdapter(sportsClubArrayList,getContext());
         recyclerView.setAdapter(clubAdapter);
 
         return view;
