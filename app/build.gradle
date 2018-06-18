@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     buildToolsVersion "27.0.1"
     defaultConfig {
-        applicationId "com.example.parktaeim.all_about_sejong"
+        applicationId "com.god.parktaeim.all_about_sejong"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1

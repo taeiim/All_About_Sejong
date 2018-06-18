@@ -11,28 +11,28 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/img_app_logo"
+        android:icon="@mipmap/icon_main_logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:largeHeap="true">
-        <activity android:name=".Activity.MainActivity">
+        <activity android:name="com.god.parktaeim.all_about_sejong.Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.DayCareCenterActivity"/>
-        <activity android:name=".Activity.DayCareCenterDetailActivity"/>
-        <activity android:name=".Activity.PostOfficeActivity"/>
-        <activity android:name=".Activity.ClubActivity" />
-        <activity android:name=".Activity.ToiletActivity" />
-        <activity android:name=".Activity.ToiletMapsActivity"/>
-        <activity android:name=".Activity.GasStationActivity"/>
-        <activity android:name=".Activity.GasStationDetailActivity"/>
-        <activity android:name=".Activity.InfoAppActivity" />
+        <activity android:name="com.god.parktaeim.all_about_sejong.Activity.DayCareCenterActivity"/>
+        <activity android:name="com.god.parktaeim.all_about_sejong.Activity.DayCareCenterDetailActivity"/>
+        <activity android:name="com.god.parktaeim.all_about_sejong.Activity.PostOfficeActivity"/>
+        <activity android:name="com.god.parktaeim.all_about_sejong.Activity.ClubActivity" />
+        <activity android:name="com.god.parktaeim.all_about_sejong.Activity.ToiletActivity" />
+        <activity android:name="com.god.parktaeim.all_about_sejong.Activity.ToiletMapsActivity"/>
+        <activity android:name="com.god.parktaeim.all_about_sejong.Activity.GasStationActivity"/>
+        <activity android:name="com.god.parktaeim.all_about_sejong.Activity.GasStationDetailActivity"/>
+        <activity android:name="com.god.parktaeim.all_about_sejong.Activity.InfoAppActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
