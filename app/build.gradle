@@ -7,8 +7,8 @@ android {
         applicationId "com.god.parktaeim.all_about_sejong"
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 2
-        versionName "1.0.1"
+        versionCode 3
+        versionName "1.0.2"
         testInstrumentationRunner
 
     }

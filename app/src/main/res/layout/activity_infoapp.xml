@@ -6,7 +6,6 @@
     android:background="@color/colorWhite"
     android:orientation="vertical">
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -39,7 +38,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/font_bmjua_regular"
                 android:text=" &quot; 고등학생이 개발한 앱 &quot;"
                 android:textColor="#000"
                 android:textSize="18dp" />

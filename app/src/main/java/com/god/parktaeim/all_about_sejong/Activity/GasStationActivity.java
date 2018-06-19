@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 
 import com.god.parktaeim.all_about_sejong.Adapter.GasStationLowPriceAdapter;
@@ -91,7 +93,6 @@ public class GasStationActivity extends AppCompatActivity {
                     xmlReader.parse(new InputSource(url.openStream()));
 
                     gasStationItemArrayList = xmlGasHandler.getLowPriceArrayList();
-
 
                 } catch (Exception e) {
                     e.printStackTrace();

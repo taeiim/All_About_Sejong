@@ -1,12 +1,14 @@
 package com.god.parktaeim.all_about_sejong.Activity;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.god.parktaeim.all_about_sejong.Adapter.ClubPagerAdapter;

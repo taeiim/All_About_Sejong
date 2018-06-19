@@ -7,5 +7,4 @@ package com.god.parktaeim.all_about_sejong;
 public class KeyWord {
     public static String OPINET_KEY_CODE = "F260180226";
 
-
 }
