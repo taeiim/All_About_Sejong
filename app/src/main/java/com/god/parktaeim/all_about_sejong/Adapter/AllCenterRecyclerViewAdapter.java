@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.parktaeim.all_about_sejong.R;
 import com.god.parktaeim.all_about_sejong.Model.DayCareCenterItem;
+import com.god.parktaeim.all_about_sejong.R;
 
 import java.util.ArrayList;
 

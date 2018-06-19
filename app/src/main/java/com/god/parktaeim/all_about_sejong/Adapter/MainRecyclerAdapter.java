@@ -12,8 +12,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.parktaeim.all_about_sejong.R;
 import com.god.parktaeim.all_about_sejong.Model.MainItem;
+import com.god.parktaeim.all_about_sejong.R;
 
 import java.util.ArrayList;
 import java.util.List;

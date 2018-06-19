@@ -9,10 +9,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
-import com.example.parktaeim.all_about_sejong.R;
 import com.god.parktaeim.all_about_sejong.Adapter.ClubPagerAdapter;
 import com.god.parktaeim.all_about_sejong.InfoDialog;
 import com.god.parktaeim.all_about_sejong.Model.ClubItem;
+import com.god.parktaeim.all_about_sejong.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

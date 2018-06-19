@@ -10,9 +10,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.parktaeim.all_about_sejong.R;
 import com.god.parktaeim.all_about_sejong.Adapter.ToiletRecyclerViewAdapter;
 import com.god.parktaeim.all_about_sejong.Model.ToiletItem;
+import com.god.parktaeim.all_about_sejong.R;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.wang.avi.AVLoadingIndicatorView;
 

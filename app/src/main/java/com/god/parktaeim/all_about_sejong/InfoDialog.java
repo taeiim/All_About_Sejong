@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.parktaeim.all_about_sejong.R;
-
 
 /**
  * Created by parktaeim on 2018. 6. 16..

@@ -10,10 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.parktaeim.all_about_sejong.R;
 import com.god.parktaeim.all_about_sejong.Adapter.GasStationLowPriceAdapter;
 import com.god.parktaeim.all_about_sejong.InfoDialog;
 import com.god.parktaeim.all_about_sejong.Model.GasStationItem;
+import com.god.parktaeim.all_about_sejong.R;
 import com.god.parktaeim.all_about_sejong.RecyclerViewClickListener;
 import com.god.parktaeim.all_about_sejong.XmlGasHandler;
 import com.wang.avi.AVLoadingIndicatorView;

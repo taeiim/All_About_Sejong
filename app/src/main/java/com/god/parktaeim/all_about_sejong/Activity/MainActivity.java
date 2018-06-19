@@ -13,10 +13,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.parktaeim.all_about_sejong.R;
 import com.god.parktaeim.all_about_sejong.Adapter.MainRecyclerAdapter;
 import com.god.parktaeim.all_about_sejong.InfoDialog;
 import com.god.parktaeim.all_about_sejong.Model.MainItem;
+import com.god.parktaeim.all_about_sejong.R;
 import com.god.parktaeim.all_about_sejong.RecyclerViewClickListener;
 
 import java.util.ArrayList;

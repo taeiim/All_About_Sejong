@@ -10,9 +10,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.parktaeim.all_about_sejong.R;
 import com.god.parktaeim.all_about_sejong.Adapter.AllCenterRecyclerViewAdapter;
 import com.god.parktaeim.all_about_sejong.Model.DayCareCenterItem;
+import com.god.parktaeim.all_about_sejong.R;
 import com.god.parktaeim.all_about_sejong.RecyclerViewClickListener;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.wang.avi.AVLoadingIndicatorView;

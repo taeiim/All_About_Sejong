@@ -43,32 +43,35 @@
     </android.support.v7.widget.Toolbar>
 
 
-    <android.support.v4.widget.NestedScrollView
+    <!--<android.support.v4.widget.NestedScrollView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <ss.com.bannerslider.views.BannerSlider
+            android:id="@+id/banner_slider"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:focusableInTouchMode="true"
-            android:orientation="vertical">
+            android:layout_height="0dp"
+            android:layout_weight="1.1"
+            app:defaultBanner="1"
+            app:defaultIndicators="dash"
+            app:interval="3000"
+            app:loopSlides="true" />
 
-            <ss.com.bannerslider.views.BannerSlider
-                android:id="@+id/banner_slider"
-                android:layout_width="match_parent"
-                android:layout_height="220dp"
-                app:defaultBanner="1"
-                app:defaultIndicators="dash"
-                app:interval="3000"
-                app:loopSlides="true" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/main_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:padding="5dp"
+            android:clipToPadding="false"/>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/main_recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="5dp" />
+    </LinearLayout>
 
-        </LinearLayout>
-
-    </android.support.v4.widget.NestedScrollView>
+    <!--</android.support.v4.widget.NestedScrollView>-->
 </LinearLayout>

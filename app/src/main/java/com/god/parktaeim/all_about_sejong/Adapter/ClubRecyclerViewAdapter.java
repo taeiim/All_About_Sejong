@@ -12,8 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.parktaeim.all_about_sejong.R;
 import com.god.parktaeim.all_about_sejong.Model.ClubItem;
+import com.god.parktaeim.all_about_sejong.R;
 
 import java.util.ArrayList;
 

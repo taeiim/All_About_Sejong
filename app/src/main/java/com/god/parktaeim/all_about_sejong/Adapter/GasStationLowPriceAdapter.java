@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.parktaeim.all_about_sejong.R;
 import com.god.parktaeim.all_about_sejong.Model.GasStationItem;
+import com.god.parktaeim.all_about_sejong.R;
 
 import java.util.ArrayList;
 
