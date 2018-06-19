@@ -23,6 +23,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -58,7 +59,7 @@ public class  DayCareCenterActivity extends AppCompatActivity{
         backIcon = (ImageView) findViewById(R.id.center_backIcon);
         backIcon.setOnClickListener(v->finish());
 
-        setRecycerView();
+        getDayCareCenterData();
 
         recyclerView = (RecyclerView) findViewById(R.id.allCenter_recyclerView);
         recyclerView.addOnItemTouchListener(new RecyclerViewClickListener(getApplicationContext(), recyclerView, new RecyclerViewClickListener.OnItemClickListener() {
@@ -126,7 +127,30 @@ public class  DayCareCenterActivity extends AppCompatActivity{
         avi.hide();
     }
 
-    private void setRecycerView(){
+    private void getDayCareCenterData(){
+        String daycarecenterData_json = "";
+        try {
+            InputStream is = getApplicationContext().getAssets().open("DayCareCenterData.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            daycarecenterData_json = new String(buffer, "UTF-8");
+
+            JSONObject jsonObject = new JSONObject(daycarecenterData_json);
+            JSONObject resultObject = (JSONObject) jsonObject.get("result");
+            JSONArray resultArray = resultObject.getJSONArray("records");
+
+            dayCareCenterItemArrayList = getArrayList(resultArray);
+            setUpRecyclerView();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        /*
         new Thread() {
             @Override
             public void run() {
@@ -190,8 +214,25 @@ public class  DayCareCenterActivity extends AppCompatActivity{
 
             }
         }.start();
+        */
+
     }
 
+    private void setUpRecyclerView(){
+        recyclerView = (RecyclerView) findViewById(R.id.allCenter_recyclerView);
+        layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        adapter = new AllCenterRecyclerViewAdapter(dayCareCenterItemArrayList);
+        recyclerView.setAdapter(adapter);
+
+        searchIcon.setVisibility(View.VISIBLE);
+
+        setSearchView();
+        stopAnim();
+    }
     private ArrayList<DayCareCenterItem> getArrayList(JSONArray resultArray) {
         ArrayList<DayCareCenterItem> arrayList = new ArrayList<>();
         try{

@@ -40,8 +40,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyApNxvsu5Ecka9FyRXhR4rnT0mXWb1KoDU"/>
 
-        <meta-data android:name="com.kakao.sdk.AppKey" android:value="80eae9cf411ea13714e5db313a7d4cac"/>
-
     </application>
 
 </manifest>
