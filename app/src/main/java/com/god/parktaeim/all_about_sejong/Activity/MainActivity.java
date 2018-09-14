@@ -1,5 +1,6 @@
 package com.god.parktaeim.all_about_sejong.Activity;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
