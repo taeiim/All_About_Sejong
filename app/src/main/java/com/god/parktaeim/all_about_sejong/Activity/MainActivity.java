@@ -94,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this, ClubActivity.class));
                         break;
                     case 4:
+                        startActivity(new Intent(MainActivity.this, BicycleActivity.class));
+                        break;
                     case 5:
                     case 6:
                     case 7:
