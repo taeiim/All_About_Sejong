@@ -37,7 +37,7 @@
         <activity android:name="com.god.parktaeim.all_about_sejong.Activity.GasStationActivity"/>
         <activity android:name="com.god.parktaeim.all_about_sejong.Activity.GasStationDetailActivity"/>
         <activity android:name="com.god.parktaeim.all_about_sejong.Activity.InfoAppActivity" />
-        <activity android:name=".Activity.BicycleActivity"/>
+        <activity android:name=".ui.bicycle.BicycleActivity"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

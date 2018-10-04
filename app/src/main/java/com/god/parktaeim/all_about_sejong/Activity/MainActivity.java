@@ -1,6 +1,5 @@
 package com.god.parktaeim.all_about_sejong.Activity;
 
-import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,6 +18,7 @@ import com.god.parktaeim.all_about_sejong.InfoDialog;
 import com.god.parktaeim.all_about_sejong.Model.MainItem;
 import com.god.parktaeim.all_about_sejong.R;
 import com.god.parktaeim.all_about_sejong.RecyclerViewClickListener;
+import com.god.parktaeim.all_about_sejong.ui.bicycle.BicycleActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         mainItemArrayList.add(new MainItem(R.drawable.icon_toilet, "공중화장실",true));
         mainItemArrayList.add(new MainItem(R.drawable.icon_gas_station, "주유소",true));
         mainItemArrayList.add(new MainItem(R.drawable.icon_club, "동호회",true));
-        mainItemArrayList.add(new MainItem(R.drawable.icon_bicycle, "자전거 어울링",false));
+        mainItemArrayList.add(new MainItem(R.drawable.icon_bicycle, "자전거 어울링",true));
         mainItemArrayList.add(new MainItem(R.drawable.icon_hospital, "병원",false));
         mainItemArrayList.add(new MainItem(R.drawable.icon_medicine, "약국",false));
         mainItemArrayList.add(new MainItem(R.drawable.icon_weather, "날씨",false));
